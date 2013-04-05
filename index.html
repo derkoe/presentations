@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JavaScript Patterns</title>
+
+		<meta name="description" content="Presentation showing important JavaScript patterns">
+		<meta name="author" content="Christian Köberl">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+			
+				<section>
+					<h1>JavaScript Patterns</h1>
+					<h3>Patterns in the most-misunderstood language</h3>
+					<p>
+						<small>Created by <a href="http://derkoe.wordpress.com">Christian Köberl</a></small>
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>Basic stuff</h2>
+					</section>
+					<section>
+						<h2>Variables</h2>
+						<ul>
+							<li><b>Always</b> declare variables:<br>
+							<code><b>var</b> i = 4;</code></li>
+							<li>Variables have function scope:
+								<pre><code>
+function bench() {
+	// this is an infinite loop!
+	for(var i = 0; i < 1000; i++) {
+		for(var i = 0; i < 10; i++) {
+			var u = i * 10;
+		}
+	}
+}
+								</code></pre>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Comarison</h2>
+						<ul>
+							<li>Always use <code>===</code> to compare stuff</li>
+							<li><code>===</code> does type coercion</li>
+						</ul>
+						<pre><code>
+'' == '0'           // false
+0 == ''             // true
+0 == '0'            // true
+
+false == 'false'    // false
+false == '0'        // true
+
+false == undefined  // false
+false == null       // false
+null == undefined   // true
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Never (ever) use &quot;with&quot;</h2>
+						<pre><code>
+with(user) {
+	// read to user.name or global variable 'name'?
+	var userName = name;
+
+	// write user.password if user has password
+	// otherwise global variable 'password' :(
+	password = generatePwd(userName);
+}
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Functions</h2>
+					</section>
+					<section>
+						<h2>Functions in JS are</h2>
+						<ul>
+							<li>Functions</li>
+							<li>Methods</li>
+							<li>Constructors</li>
+							<li>Classes</li>
+							<li>Modules</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Functions as functions</h2>
+						<pre><code>
+// create a function and a variable
+function func1(arg1, arg2) {
+	...
+	return x;
+}
+
+// same can be achieved with
+var func2 = function(arg1) {
+	...
+}
+
+// execute anoynmous function
+<b>(</b>function () {
+	...
+}()<b>)</b>;
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Module singleton pattern</h2>
+						<pre><code contenteditable>
+var adder = <b>(</b>function() {
+	var calcCount = 0;
+	function doAdd(x, y) {
+		calcCount++;
+		return x + y;
+	}
+	// public stuff
+	return {
+		add : function(x, y) {
+			return doAdd(x, y);
+		},
+		calcCount : function() {
+			return calcCount;
+		}
+	};
+}()<b>)</b>;
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Object-oriented programming</h2>
+					</section>
+
+					<section>
+						<h2>Prototypal Inheritance</h2>
+						<pre><code contenteditable>
+if (typeof Object.create !== 'function') {
+    Object.create = function (o) {
+        function F() {}
+        F.prototype = o;
+        return new F();
+    };
+}
+
+newObject = Object.create(oldObject);
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Classical OOP in JavaScript</h2>
+						<pre><code contenteditable>
+function Person(id) {
+	this.id = id;
+}
+Person.prototype.toString = function() {
+	return 'Person (id=' + this.id + ')';
+}
+
+Person p = new Person(5);
+p.toString(); // Person (id=5)
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Pseudoclassical Inheritance</h2>
+						<pre><code contenteditable>
+function Person(id) {
+	this.id = id;
+}
+Person.prototype.toString = function() {
+	return 'Person (id=' + this.id + ')';
+}
+function Employee(id, employeeNo) {
+	this.id = id;
+	this.employeeNo = employeeNo;
+}
+Employee.prototype = new Person();
+Employee.prototype.toString = function() {
+	return 'Employee (id=' + id + ', no=' + employeeNo + ')';
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Preferred class model</h2>
+						<pre><code contenteditable>
+function Person(name) {
+	var id = generateId();
+	return {
+		getId : function() {
+			return id;
+		},
+		setName : function () {
+			name = name;
+		}
+	}
+}
+						</code></pre>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h1>THX</h1>
+						<h2>Questions?</h2>
+					</section>
+
+					<section>
+						<h2>Sources</h2>
+						<ul>
+							<li><a href="http://javascript.crockford.com/">Douglas Crockford's Javascript</a></li>
+							<li><a href="http://de.selfhtml.org/javascript/index.htm">SELFHTML</a></li>
+							<li class="small">Presentation powered by <a href="http://lab.hakim.se/reveal-js/">reveal.js</a></li>
+						</ul>
+					</section>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				
+				margin: 0,
+
+				theme: 'solarized', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.tabReplace = '   '; hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
