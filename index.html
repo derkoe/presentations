@@ -55,8 +55,7 @@
 							<li><b>Always</b> declare variables:<br>
 							<code><b>var</b> i = 4;</code></li>
 							<li>Variables have function scope:
-								<pre><code>
-function bench() {
+								<pre><code>function bench() {
 	// this is an infinite loop!
 	for(var i = 0; i < 1000; i++) {
 		for(var i = 0; i < 10; i++) {
@@ -64,8 +63,7 @@ function bench() {
 		}
 		// u is still in scope here
 	}
-}
-								</code></pre>
+}</code></pre>
 							</li>
 						</ul>
 					</section>
@@ -75,8 +73,7 @@ function bench() {
 							<li>Always use <code>===</code> to compare stuff</li>
 							<li><code>===</code> does type coercion</li>
 						</ul>
-						<pre><code>
-'' == '0'           // false
+						<pre><code>'' == '0'           // false
 0 == ''             // true
 0 == '0'            // true
 
@@ -85,22 +82,19 @@ false == '0'        // true
 
 false == undefined  // false
 false == null       // false
-null == undefined   // true
-						</code></pre>
+null == undefined   // true</code></pre>
 					</section>
 
 					<section>
 						<h2>Never (ever) use &quot;with&quot;</h2>
-						<pre><code>
-with(user) {
+						<pre><code>with(user) {
 	// read to user.name or global variable 'name'?
 	var userName = name;
 
 	// write user.password if user has password
 	// otherwise global variable 'password' :(
 	password = generatePwd(userName);
-}
-						</code></pre>
+}</code></pre>
 					</section>
 				</section>
 
@@ -120,8 +114,7 @@ with(user) {
 					</section>
 					<section>
 						<h2>Functions as functions</h2>
-						<pre><code>
-// create a function and a variable
+						<pre><code>// create a function and a variable
 function func1(arg1, arg2) {
 	...
 	return x;
@@ -135,14 +128,77 @@ var func2 = function(arg1) {
 // execute anoynmous function
 <b>(</b>function () {
 	...
-}()<b>)</b>;
+}()<b>)</b>;</code></pre>
+					</section>
+
+					<section>
+						<h2><code>arguments</code></h2>
+						<ul>
+							<li><code>arguments</code> is an array-like structure</li>
+							<li>In ES5 <code>arguments</code> inherits from <code>Array</code></li>
+							<li><code>arguments.length</code>is count of arguments passed</li>
+							<li>Never change <code>arguments</code>! Only read-access.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2><code>arguments</code></h2>
+						<pre><code contenteditable>// ES3
+function sum() {
+	var length = arguments.length, sum = 0;
+	for(var i; i < length; i++) {
+		sum += arguments[i];
+	}
+	return sum;
+}
+
+// ES5
+function sum() {
+	return arguments.reduce(function(x, y) {
+		return x + y;
+	});
+}</code></pre>
+					</section>
+
+					<section>
+						<h2>Invoking Functions</h2>
+						<pre><code contenteditable>
+myFunction(); // function form
+
+myObject.myFunction(); // method form
+
+new MyFunction(); // constructor form
+
+myFunction.apply(thisObject, [arg1, arg2]); // apply/call form
+myFunction.call(thisObject, arg1, arg2)
 						</code></pre>
 					</section>
 
 					<section>
+						<h2>What the hell is <code>this</code>?</h2>
+						<table>
+							<tr>
+								<th>Function form</th>
+								<td>global object (<code>window</code>),<br>ES5: undefined</td>
+							</tr>
+							<tr>
+								<th>Method form</th>
+								<td>the object the method was called on</td>
+							</tr>
+							<tr>
+								<th>Constructor form</th>
+								<td>the object currently created</td>
+							</tr>
+							<tr>
+								<th>Apply/call form</th>
+								<td>the object passed as parameter</td>
+							</tr>
+						</table>
+					</section>
+
+					<section>
 						<h2>Module singleton pattern</h2>
-						<pre><code contenteditable>
-var adder = <b>(</b>function() {
+						<pre><code contenteditable>var adder = <b>(</b>function() {
 	var calcCount = 0;
 	function doAdd(x, y) {
 		calcCount++;
@@ -157,8 +213,7 @@ var adder = <b>(</b>function() {
 			return calcCount;
 		}
 	};
-}()<b>)</b>;
-						</code></pre>
+}()<b>)</b>;</code></pre>
 					</section>
 				</section>
 
@@ -169,8 +224,7 @@ var adder = <b>(</b>function() {
 
 					<section>
 						<h2>Prototypal Inheritance</h2>
-						<pre><code contenteditable>
-if (typeof Object.create !== 'function') {
+						<pre><code contenteditable>if (typeof Object.create !== 'function') {
     Object.create = function (o) {
         function F() {}
         F.prototype = o;
@@ -178,14 +232,12 @@ if (typeof Object.create !== 'function') {
     };
 }
 
-newObject = Object.create(oldObject);
-						</code></pre>
+newObject = Object.create(oldObject);</code></pre>
 					</section>
 
 					<section>
 						<h2>Classical OOP in JavaScript</h2>
-						<pre><code contenteditable>
-function Person(id) {
+						<pre><code contenteditable>function Person(id) {
 	this.id = id;
 }
 Person.prototype.toString = function() {
@@ -193,14 +245,12 @@ Person.prototype.toString = function() {
 }
 
 Person p = new Person(5);
-p.toString(); // Person (id=5)
-						</code></pre>
+p.toString(); // Person (id=5)</code></pre>
 					</section>
 
 					<section>
 						<h2>Pseudoclassical Inheritance</h2>
-						<pre><code contenteditable>
-function Person(id) {
+						<pre><code contenteditable>function Person(id) {
 	this.id = id;
 }
 Person.prototype.toString = function() {
@@ -213,14 +263,12 @@ function Employee(id, employeeNo) {
 Employee.prototype = new Person();
 Employee.prototype.toString = function() {
 	return 'Employee (id=' + id + ', no=' + employeeNo + ')';
-}
-						</code></pre>
+}</code></pre>
 					</section>
 
 					<section>
 						<h2>Preferred class model</h2>
-						<pre><code contenteditable>
-function Person(name) {
+						<pre><code contenteditable>function Person(name) {
 	var id = generateId();
 	return {
 		getId : function() {
@@ -230,8 +278,7 @@ function Person(name) {
 			name = name;
 		}
 	}
-}
-						</code></pre>
+}</code></pre>
 					</section>
 
 				</section>
@@ -246,6 +293,7 @@ function Person(name) {
 						<h2>Sources</h2>
 						<ul>
 							<li><a href="http://javascript.crockford.com/">Douglas Crockford's Javascript</a></li>
+							<li><a href="https://www.youtube.com/user/yuilibrary">Crockford on JavaScript - Part 1 to 6 (yuilibrary)</a></li>
 							<li><a href="http://de.selfhtml.org/javascript/index.htm">SELFHTML</a></li>
 							<li class="small">Presentation powered by <a href="http://lab.hakim.se/reveal-js/">reveal.js</a></li>
 						</ul>
