@@ -47,8 +47,42 @@
 
 				<section>
 					<section>
+						<h2>Intro</h2>
+					</section>
+
+					<section>
+						<h2>JavaScript ...</h2>
+						<ul>
+							<li>is actually called ECMAScript, JavaScript is only a dialect</li>
+							<li>is a functional, loosely typed language with prototypal OOP</li>
+							<li>is one of the most common programming languages</li>
+							<li>has nothing to do with Java (but the name)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>JS History in 30 Seconds</h2>
+						<ul>
+							<li>Browser: Mosaic, Netscape, IE</li>
+							<li>Sun created Java</li>
+							<li>Netscape created JavaScript</li>
+							<li>IE created JScript</li>
+							<li>Standardized under ECMA: ECMAScript</li>
+							<li>Current versions: 
+							<ul>
+								<li>ES3, JScript 5.5 - 5.8 (IE5.5+), JavaScript 1.5 - 1.8.3</li>
+								<li>ES5, JavaScript 1.8.5 (IE9+, FF4+, Chrome, Safari5+)</li>
+							</ul>
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
 						<h2>Basic stuff</h2>
 					</section>
+
 					<section>
 						<h2>Variables</h2>
 						<ul>
@@ -67,11 +101,12 @@
 							</li>
 						</ul>
 					</section>
+
 					<section>
 						<h2>Comarison</h2>
 						<ul>
-							<li>Always use <code>===</code> to compare stuff</li>
-							<li><code>===</code> does type coercion</li>
+							<li>Always use <code>===</code> (<code>!==</code>) to compare stuff</li>
+							<li><code>==</code> (<code>!=</code>) does type coercion</li>
 						</ul>
 						<pre><code>'' == '0'           // false
 0 == ''             // true
@@ -83,6 +118,23 @@ false == '0'        // true
 false == undefined  // false
 false == null       // false
 null == undefined   // true</code></pre>
+					</section>
+
+					<section>
+						<h2>Be Aware of Numbers</h2>
+						<ul>
+							<li><code>Number</code> class/prototype</li>
+							<li>IEEE floating point double precision - aka double</li>
+							<li><pre><code class="javascript">0.1 + 0.2 !== 0.3
+0.1 + 0.2 === 0.30000000000000004</code></pre></li>
+							<li>Correct money arithmetics:
+								<ol>
+									<li>Transform to whole EUR/$: <code>amount * 100</code></li>
+									<li>Calculate</li>
+									<li>Transform back: <code>amount / 100</code></li>
+								</ol>
+							</li>
+						</ul>
 					</section>
 
 					<section>
@@ -132,7 +184,7 @@ var func2 = function(arg1) {
 					</section>
 
 					<section>
-						<h2><code>arguments</code></h2>
+						<h2>Arguments</h2>
 						<ul>
 							<li><code>arguments</code> is an array-like structure</li>
 							<li>In ES5 <code>arguments</code> inherits from <code>Array</code></li>
@@ -142,7 +194,7 @@ var func2 = function(arg1) {
 					</section>
 
 					<section>
-						<h2><code>arguments</code></h2>
+						<h2>Arguments</h2>
 						<pre><code contenteditable>// ES3
 function sum() {
 	var length = arguments.length, sum = 0;
@@ -219,12 +271,71 @@ myFunction.call(thisObject, arg1, arg2)
 
 				<section>
 					<section>
+						<h2>Closure</h2>
+					</section>
+
+					<section>
+						<h2>Closure is cool :)</h2>
+						<pre><code contenteditable>var myThing = (function() {
+	var x = 42; // x is private
+	return {
+		// but can be accessed via getX
+		getX : function() { return x; }
+	};
+}());
+
+myThing.getX(); // 42</code></pre>
+					</section>
+					<section>
+						<h2>But be aware of closure</h2>
+						<pre><code class="javascript" contenteditable>for(i = 0; i < elms.length; i++) {
+	elm = elms[i];
+	elm.onclick = new function() {
+		elm.style.display = 'none'; // this will always be the last elm
+	}
+}
+</code></pre>
+
+<pre><code class="javascript" contenteditable>function hideHandler(elm) {
+	elm.style.display = 'none';
+}
+for(i = 0; i < elms.length; i++) {
+	elm = elms[i];
+	elm.onclick = hideHandler(elm);
+}
+</code></pre>
+						<p>==> never define functions in loops!</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
 						<h2>Object-oriented programming</h2>
 					</section>
 
 					<section>
+						<h2>Objects</h2>
+						<p>Objects are associative arrays</p>
+						<pre><code contenteditable>var myObj = { 
+	fname : 'Christian',
+	lname : 'Köberl',
+	toString : function() { 
+		return 'This is ' + this.lname.substring(0, 2);
+	} 
+};
+
+myObj.fname; // 'Christian'
+myObj['lname']; // 'Köberl'
+myObj.toString(); // 'This is Kö'
+
+myObj['toString']; // function() { return 'This is ' + ...
+						</code></pre>
+					</section>
+
+					<section>
 						<h2>Prototypal Inheritance</h2>
-						<pre><code contenteditable>if (typeof Object.create !== 'function') {
+						<pre><code contenteditable>// ES5 polyfill
+if (typeof Object.create !== 'function') {
     Object.create = function (o) {
         function F() {}
         F.prototype = o;
@@ -232,7 +343,11 @@ myFunction.call(thisObject, arg1, arg2)
     };
 }
 
-newObject = Object.create(oldObject);</code></pre>
+var newObj = Object.create(myObj);
+newObj.toString(); // 'This is Kö'
+
+newObj.toString = function() { return 'My ' + this.fname; }
+newObj.toString(); // My Christian</code></pre>
 					</section>
 
 					<section>
@@ -267,18 +382,38 @@ Employee.prototype.toString = function() {
 					</section>
 
 					<section>
-						<h2>Preferred class model</h2>
-						<pre><code contenteditable>function Person(name) {
-	var id = generateId();
+						<h2>Functional class model</h2>
+						<pre><code contenteditable>function createPerson(name) {
+	// private
+	var id = null;
+	function doGetId() {
+		return id || generateId();
+	}
+	// public (privileged)
 	return {
+		name: name,
 		getId : function() {
-			return id;
-		},
-		setName : function () {
-			name = name;
+			return doGetId();
 		}
 	}
 }</code></pre>
+					</section>
+
+					<section>
+						<h2>Parasitic Inheritance</h2>
+						<pre><code contenteditable>function createEmployee(name, employeeNo) {
+	var that = createPerson(name);
+	that.toString = function() {
+		return 'Employee (name=' + that.name
+		       + ', no=' + employeeNo + ')';
+	}
+	return that;
+}
+
+var e = createEmployee('Christian', 42);
+e.name = 'Hubert';
+e.toString(); // Employee (name=Hubert, no=42)
+</code></pre>				
 					</section>
 
 				</section>
@@ -293,7 +428,7 @@ Employee.prototype.toString = function() {
 						<h2>Sources</h2>
 						<ul>
 							<li><a href="http://javascript.crockford.com/">Douglas Crockford's Javascript</a></li>
-							<li><a href="https://www.youtube.com/user/yuilibrary">Crockford on JavaScript - Part 1 to 6 (yuilibrary)</a></li>
+							<li><a href="http://www.yuiblog.com/crockford/">Crockford on JavaScript - Part 1 to 6</a></li>
 							<li><a href="http://de.selfhtml.org/javascript/index.htm">SELFHTML</a></li>
 							<li class="small">Presentation powered by <a href="http://lab.hakim.se/reveal-js/">reveal.js</a></li>
 						</ul>
