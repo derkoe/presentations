@@ -49,7 +49,88 @@
 					<section>
 						<h2>Intro</h2>
 					</section>
+
+					<section>
+						<h2>AngularJS in 30 Seconds</h2>
+						<pre contenteditable="true"><code>&lt;div data-ng-app&gt;
+	&lt;label&gt;Name:&lt;/label&gt;
+	&lt;input type=&quot;text&quot; data-ng-model=&quot;data.name&quot; 
+		placeholder=&quot;Enter a name here&quot;&gt;
+	&lt;p&gt;Hello {{data.name}}!&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+						<div data-ng-app>
+							<label>Name:</label> <input type="text" data-ng-model="data.name" placeholder="Enter a name here">
+							<p>Hello {{data.name}}!</p>
+						</div>
+					</section>
+
+					<section>
+						<h2>AngularJS is more</h2>
+						<ul>
+							<li>MVC with fully two-way data-binding</li>
+							<li>Declarative form validation</li>
+							<li>Route management (enables deep linking)</li>
+							<li>Dependency Injection - yeah Spring for JS</li>
+							<li>Directives: reusable components, enhancing HTML, integrate 3rd party libs</li> 
+						</ul>
+					</section>
 				</section>
+
+				<section>
+					<section>
+						<h2>MVC and Data-Binding</h2>
+					</section>
+
+					<section>
+						<h2>Model View Controller</h2>
+						<ul>
+							<li><b>Model</b><br>a plain JavaScript object (POJSO)</li>
+							<li><b>View</b><br>a HTML template using directives and expressions enclosed in <code>{{ }}</code></li>
+							<li><b>Controller</b><br>a JavaScript object that gets the <code>$scope</code> and services injected. Creates and changes the model.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Binding and Scope</h2>
+					</section>
+
+					<section>
+						<h3>Controllers</h3>
+						<ul>
+							<li>should not reference DOM</li>
+							<li>should not reference other controllers</li>
+							
+						</ul>
+						<h3>Services</h3>
+						<ul>
+							<li>should not reference DOM</li>
+							<li></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Never write to $scope from view</h2>
+						
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>THX</h1>
+						<h2>Questions?</h2>
+					</section>
+
+					<section>
+						<h2>Sources</h2>
+						<ul>
+							<li><a href="http://angularjs.org/">AngularJS home page</a></li>
+							<li><a href="http://egghead.io/">Videos on egghead.io</a>
+							<li><a href="https://www.youtube.com/watch?v=ZhfUv0spHCY">AngularJS MTV Meetup: Best Practices (2012/12/11)</a></li>
+							<li class="small">Presentation powered by <a href="http://lab.hakim.se/reveal-js/">reveal.js</a></li>
+						</ul>
+					</section>
+				</section>
+			</div>
 
 		</div>
 
@@ -81,6 +162,8 @@
 			});
 
 		</script>
+
+		<script src="angular.js"></script>
 
 	</body>
 </html>
