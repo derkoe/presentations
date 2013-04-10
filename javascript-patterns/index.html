@@ -248,30 +248,11 @@ myFunction.call(thisObject, arg1, arg2)
 						</table>
 					</section>
 
-					<section>
-						<h2>Module singleton pattern</h2>
-						<pre><code contenteditable>var adder = <b>(</b>function() {
-	var calcCount = 0;
-	function doAdd(x, y) {
-		calcCount++;
-		return x + y;
-	}
-	// public stuff
-	return {
-		add : function(x, y) {
-			return doAdd(x, y);
-		},
-		calcCount : function() {
-			return calcCount;
-		}
-	};
-}()<b>)</b>;</code></pre>
-					</section>
 				</section>
 
 				<section>
 					<section>
-						<h2>Closure</h2>
+						<h2>Closure and Advanced Functions</h2>
 					</section>
 
 					<section>
@@ -306,6 +287,68 @@ for(i = 0; i < elms.length; i++) {
 </code></pre>
 						<p>==> never define functions in loops!</p>
 					</section>
+
+
+					<section>
+						<h2>Callbacks Using Higher Order Functions</h2>
+						<pre><code contenteditable>function calc(args, callback) {
+	var result = someComplexCalc();
+	callback(result);
+}
+
+calc(data, function(result) { 
+	myObj.calculated = result; 
+});
+</code></pre>
+						<p>Classical example: Prototype Ajax</p>
+						<pre><code contenteditable>new Ajax.Request('/your/url', {
+  onSuccess: function(response) {
+    // Handle the response content...
+  }
+});</code></pre>
+
+					</section>
+
+					<section>
+						<h2>Encapsulated Functions</h2>
+						<pre><code contenteditable>// encapsulated functions to be called only once
+function once(func) {
+	return function() {
+		var f = func;
+		func = null;
+		return f.apply(this, arguments);
+	}
+}
+
+// now calc result can only be set once 
+calc(data, once(function(result) { 
+	myObj.calculated = result; 
+}));
+</code></pre>
+					</section>
+
+					<section>
+						<h2>Partial Application and Currying</h2>
+					<pre><code contenteditable>
+function add(x, y) {
+	return x + y;
+}
+function inc(x) {
+	return add(x, 1); // looks like currying 
+}
+
+// real currying
+Function.prototype.curry = function() {
+	var fn = this, args = Array.prototype.slice.call(arguments);
+	return function() {
+		return fn.apply(this, args.concat(
+			Array.prototype.slice.call(arguments)));
+	};
+};
+var inc2 = add.curry(1);
+</code></pre>
+					</section>
+
 				</section>
 
 				<section>
@@ -379,6 +422,27 @@ Employee.prototype = new Person();
 Employee.prototype.toString = function() {
 	return 'Employee (id=' + id + ', no=' + employeeNo + ')';
 }</code></pre>
+					</section>
+
+					<section>
+						<h2>Module singleton pattern</h2>
+						<pre><code contenteditable>var adder = <b>(</b>function() {
+	// private stuff
+	var calcCount = 0;
+	function doAdd(x, y) {
+		calcCount++;
+		return x + y;
+	}
+	// public stuff
+	return {
+		add : function(x, y) {
+			return doAdd(x, y);
+		},
+		calcCount : function() {
+			return calcCount;
+		}
+	};
+}()<b>)</b>;</code></pre>
 					</section>
 
 					<section>
