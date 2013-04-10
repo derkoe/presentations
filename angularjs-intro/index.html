@@ -52,9 +52,9 @@
 
 					<section>
 						<h2>AngularJS in 30 Seconds</h2>
-						<pre contenteditable="true"><code>&lt;div data-ng-app&gt;
+						<pre contenteditable="true"><code>&lt;div ng-app&gt;
 	&lt;label&gt;Name:&lt;/label&gt;
-	&lt;input type=&quot;text&quot; data-ng-model=&quot;data.name&quot; 
+	&lt;input type=&quot;text&quot; ng-model=&quot;data.name&quot; 
 		placeholder=&quot;Enter a name here&quot;&gt;
 	&lt;p&gt;Hello {{data.name}}!&lt;/p&gt;
 &lt;/div&gt;</code></pre>
@@ -91,7 +91,50 @@
 					</section>
 
 					<section>
+						<h2>Model View Controller in Code</h2>
+						<pre contenteditable="true"><code>&lt;-- This is our view --&gt;
+&lt;div ng-app&gt;
+	&lt;div ng-controller=&quot;FirstCtrl&quot;&gt;
+		&lt;input ng-model=&quot;data.name&quot;&gt;
+		{{ data.name }}
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+						<pre contenteditable="true"><code>// This is the controller
+function FirstCtrl($scope) {
+	// $scope.data is the model (not $scope)
+	$scope.data = {
+		name : 'My name'
+	};
+}
+</code></pre>
+					</section>
+
+					<section>
+						<h2>Controllers and Interaction</h2>
+						<pre contenteditable="true"><code>&lt;div ng-app&gt;
+	&lt;div ng-controller=&quot;FirstCtrl&quot;&gt;
+		&lt;input ng-model=&quot;data.name&quot;&gt;
+		{{ reverse(data.name) }} 
+		&lt;button ng-click=&quot;resetName()&quot;&gt;Reset&lt;/button&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+						<pre contenteditable="true"><code>function FirstCtrl($scope) {
+	$scope.data = {
+		name : 'My name'
+	};
+	$scope.reverse = function(text) {
+		return text.reverse();
+	};
+	$scope.resetName = function() {
+		$scope.data.name = '';
+	};
+}
+</code></pre>
+					</section>
+
+					<section>
 						<h2>Binding and Scope</h2>
+						TODO
 					</section>
 
 					<section>
@@ -101,6 +144,10 @@
 							<li>should not reference other controllers</li>
 							
 						</ul>
+						<h3>Views</h3>
+						<ul>
+							<li>should never write to $scope: <code style="text-decoration: line-through;">ng-model=&quot;myModel&quot;</code></li>
+						</ul>
 						<h3>Services</h3>
 						<ul>
 							<li>should not reference DOM</li>
@@ -108,10 +155,6 @@
 						</ul>
 					</section>
 
-					<section>
-						<h2>Never write to $scope from view</h2>
-						
-					</section>
 				</section>
 
 				<section>
