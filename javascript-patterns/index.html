@@ -397,7 +397,7 @@ myObj['toString']; // function() { return 'This is ' + ...
 					<section>
 						<h2>Prototypal Inheritance</h2>
 						<pre><code contenteditable>// ES5 polyfill
-if (typeof Object.create !== 'function') {
+if (!Object.hasOwnProperty('create') {
     Object.create = function (o) {
         function F() {}
         F.prototype = o;
