@@ -155,3 +155,6 @@ body {
 .reveal table th {
 	font-weight: bold;
 }
+code {
+	white-space: pre;
+}

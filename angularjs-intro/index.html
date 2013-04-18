@@ -36,7 +36,7 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-			
+
 				<section>
 					<h1>AngularJS Intro</h1>
 					<h3>Data-binding, dependency injection, directives.</h3>
@@ -52,16 +52,8 @@
 
 					<section>
 						<h2>AngularJS in 30 Seconds</h2>
-						<pre contenteditable="true"><code>&lt;div ng-app&gt;
-	&lt;label&gt;Name:&lt;/label&gt;
-	&lt;input type=&quot;text&quot; ng-model=&quot;data.name&quot; 
-		placeholder=&quot;Enter a name here&quot;&gt;
-	&lt;p&gt;Hello {{data.name}}!&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-						<div data-ng-app>
-							<label>Name:</label> <input type="text" data-ng-model="data.name" placeholder="Enter a name here">
-							<p>Hello {{data.name}}!</p>
-						</div>
+						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/AU6Md/show" frameborder="0"></iframe>
+						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/AU6Md/embedded/html/presentation/" frameborder="0"></iframe>
 					</section>
 
 					<section>
@@ -92,51 +84,102 @@
 
 					<section>
 						<h2>Model View Controller in Code</h2>
-						<pre contenteditable="true"><code>&lt;-- This is our view --&gt;
-&lt;div ng-app&gt;
-	&lt;div ng-controller=&quot;FirstCtrl&quot;&gt;
-		&lt;input ng-model=&quot;data.name&quot;&gt;
-		{{ data.name }}
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-						<pre contenteditable="true"><code>// This is the controller
-function FirstCtrl($scope) {
-	// $scope.data is the model (not $scope)
-	$scope.data = {
-		name : 'My name'
-	};
-}
-</code></pre>
+						<iframe width="100%" height="150" src="http://jsfiddle.net/derkoe/jZhsz/show" frameborder="0"></iframe>
+						<iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/jZhsz/embedded/html,js/presentation/" frameborder="0"></iframe>
 					</section>
 
 					<section>
 						<h2>Controllers and Interaction</h2>
-						<pre contenteditable="true"><code>&lt;div ng-app&gt;
-	&lt;div ng-controller=&quot;FirstCtrl&quot;&gt;
-		&lt;input ng-model=&quot;data.name&quot;&gt;
-		{{ reverse(data.name) }} 
-		&lt;button ng-click=&quot;resetName()&quot;&gt;Reset&lt;/button&gt;
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-						<pre contenteditable="true"><code>function FirstCtrl($scope) {
-	$scope.data = {
-		name : 'My name'
-	};
-	$scope.reverse = function(text) {
-		return text.reverse();
-	};
-	$scope.resetName = function() {
-		$scope.data.name = '';
-	};
-}
-</code></pre>
+						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/9CMp9/show" frameborder="0"></iframe>
+						<iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/9CMp9/embedded/html,js/presentation/" frameborder="0"></iframe>
+					</section>
+				</section>			
+
+				<section>
+					<section>
+						<h2>Building an Application</h2>
 					</section>
 
 					<section>
-						<h2>Binding and Scope</h2>
-						TODO
+						<h2>Definining Modules</h2>
+						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/f46xf/show" frameborder="0"></iframe>
+						<iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/f46xf/embedded/html,js/presentation/" frameborder="0"></iframe>
 					</section>
 
+					<section>
+						<h2>Sharing State Between Controllers</h2>
+						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/T85rg/show" frameborder="0"></iframe>
+						<iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/T85rg/embedded/html,js/presentation/" frameborder="0"></iframe>
+					</section>
+
+					<section>
+						<h2>Using Other Services ($http)</h2>
+						<iframe width="100%" height="150" src="http://jsfiddle.net/derkoe/VjP3P/show" frameborder="0"></iframe>
+						<iframe width="100%" height="300" src="http://jsfiddle.net/derkoe/VjP3P/embedded/html,js/presentation/" frameborder="0"></iframe>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Built-In Directives</h2>
+					</section>
+
+					<section>
+						<h2>Invoking/Using Directives</h2>
+						<ul>
+							<li>Attribute: 
+							<ul>
+								<li>Standard: <code>&lt;span ng-bind=&quot;[expression]&quot;&gt;</code><br></li>
+								<li>HTML5 data-attributes: <code>&lt;input data-ng-model=&quot;[expression]&quot;&gt;</code></li>
+							</ul>
+							</li>
+							<li>Tag: <code>&lt;ng-form&gt;...&lt;/ng-form&gt;</code></li>
+							<li>CSS class: <code>&lt;span class=&quot;ng-click: [expression]&quot;&gt;</code></li>
+							<li>Hint: The JavaScript name of the directive is camelCase, e.g. <code>ngModel</code></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>ng-bind And Expressions</h2>
+						<ul>
+							<li>This <code>&lt;span&gt;{{ expression }}&lt;/span&gt;</code></li>
+							<li>Is the same as <code>&lt;span ng-bind=&quot;expression&quot;&gt;&lt;/span&gt;</code></li>
+							<li>Expressions:
+								<ul>
+									<li><code>27 + 15</code> -> 42</li>
+									<li><code>person.name</code> -> get person object form $scope and use name attribute</li>
+									<li><code>myFunction()</code> -> get restul of call to myFunction on $scope</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>ng-click And Other Events</h2>
+						<ul>
+							<li>Expressions in action directives should be functions:
+							<pre><code>&lt;button ng-click=&quot;doSomething()&quot;&gt;Click Me&lt;/button&gt;</code></pre></li>
+							<li>Other events: ng-dblclick, ng-submit, ng-mouse* (mouseup, mousemove, ...)</li>
+							<li>ng-change is called on each change of the value
+								<pre><code>&lt;input type=&quot;checkbox&quot; ng-model=&quot;confirmed&quot; ng-change=&quot;change()&quot; /&gt;</code></pre>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Loops And ng-repeat</h2>
+						<iframe width="100%" height="150" src="http://jsfiddle.net/derkoe/9fR23/show" frameborder="0"></iframe>
+						<iframe width="100%" height="300" src="http://jsfiddle.net/derkoe/9fR23/embedded/html,js/presentation/" frameborder="0"></iframe>
+					</section>
+
+					<section>
+						<h2>AngularJS - Selects and ng-options</h2>
+						<iframe width="100%" height="50" src="http://jsfiddle.net/derkoe/KN9xx/show" frameborder="0"></iframe>
+						<iframe width="100%" height="400" src="http://jsfiddle.net/derkoe/KN9xx/embedded/html,js/presentation/" frameborder="0"></iframe>
+					</section>
+				</section>
+
+				<section>
 					<section>
 						<h3>Controllers</h3>
 						<ul>
@@ -155,6 +198,28 @@ function FirstCtrl($scope) {
 						</ul>
 					</section>
 
+				</section>
+
+				<section>
+					<section>
+						<h2>Testing</h2>
+					</section>
+					<section>
+						<h2>text</h2>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Routes and Views</h2>
+					</section>
+					<section>
+						<h2>Routes? Views? What?</h2>
+						<ul>
+							<li>Navigable: back-button, bookmarks</li>
+							<li></li>
+						</ul>
+					</section>
 				</section>
 
 				<section>
@@ -181,7 +246,6 @@ function FirstCtrl($scope) {
 		<script src="../reveal.js/js/reveal.min.js"></script>
 
 		<script>
-
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
@@ -205,8 +269,6 @@ function FirstCtrl($scope) {
 			});
 
 		</script>
-
-		<script src="angular.js"></script>
 
 	</body>
 </html>
