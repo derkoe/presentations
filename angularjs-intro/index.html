@@ -121,20 +121,21 @@
 
 				<section>
 					<section>
-						<h2>Built-In Directives</h2>
+						<h2>Built-in Directives</h2>
 					</section>
 
 					<section>
 						<h2>Invoking/Using Directives</h2>
 						<ul>
 							<li>Attributes: 
-							<ul>
-								<li>Standard: <code>&lt;span ng-bind=&quot;[expression]&quot;&gt;</code><br></li>
-								<li>HTML5 data-attributes: <code>&lt;input data-ng-model=&quot;[expression]&quot;&gt;</code></li>
-							</ul>
+								<ul>
+									<li>Standard: <code>&lt;span ng-bind=&quot;[expression]&quot;&gt;</code><br></li>
+									<li>HTML5 data-attributes: <code>&lt;input data-ng-model=&quot;[expression]&quot;&gt;</code></li>
+								</ul>
 							</li>
 							<li>Tag: <code>&lt;ng-form&gt;...&lt;/ng-form&gt;</code></li>
 							<li>CSS class: <code>&lt;span class=&quot;ng-click: [expression]&quot;&gt;</code></li>
+							<li>Comment: <code>&lt;!-- directive:my-directive --&gt;</code></li>
 							<li>Hint: The JavaScript name of the directive is camelCase, e.g. <code>ngModel</code></li>
 						</ul>
 					</section>
@@ -173,9 +174,13 @@
 					</section>
 
 					<section>
-						<h2>AngularJS - Selects and ng-options</h2>
+						<h2>Selects and ng-options</h2>
 						<iframe width="100%" height="50" src="http://jsfiddle.net/derkoe/KN9xx/show" frameborder="0"></iframe>
 						<iframe width="100%" height="400" src="http://jsfiddle.net/derkoe/KN9xx/embedded/html,js/presentation/" frameborder="0"></iframe>
+					</section>
+
+					<section>
+						<h2>Creating Directives</h2>
 					</section>
 				</section>
 
@@ -201,6 +206,69 @@
 						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/6BLDg/show" frameborder="0"></iframe>
 						<iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/6BLDg/embedded/html,js/presentation/" frameborder="0"></iframe>
 					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h2>Routes and Views</h2>
+					</section>
+
+					<section>
+						<h2>Routes? Views? What?</h2>
+						<ul>
+							<li>Navigable: back-button, bookmarks</li>
+							<li>Structure application in parts</li>
+							<li>Lazy load templates from server</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Routes and Redirects</h2>
+						<iframe width="100%" height="100" src="http://jsfiddle.net/derkoe/JzvuN/show" frameborder="0"></iframe>
+						<iframe width="100%" height="350" src="http://jsfiddle.net/derkoe/JzvuN/embedded/html,js/presentation/" frameborder="0"></iframe>
+					</section>
+
+					<section>
+						<h2>Routes and Controllers</h2>
+						<iframe width="100%" height="100" src="http://jsfiddle.net/derkoe/dZ8bh/show" frameborder="0"></iframe>
+						<iframe width="100%" height="350" src="http://jsfiddle.net/derkoe/dZ8bh/embedded/html,js/presentation/" frameborder="0"></iframe>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Creating Directives</h2>
+					</section>
+
+					<section>
+						<h2>Creating Reusable Components</h2>
+						<iframe width="100%" height="150" src="http://jsfiddle.net/derkoe/tjujY/show" frameborder="0"></iframe>
+						<iframe width="100%" height="300" src="http://jsfiddle.net/derkoe/tjujY/embedded/html,js/presentation/" frameborder="0"></iframe>
+					</section>
+
+					<section>
+						<h2>Anatomy Of Directives</h2>
+						<ul>
+							<li>restrict - E - element, A - attribute, C - class,  M - comment</li>
+							<li>scope - An isolate scope for the directive, if not there scope is inherited from enclosing controller</li>
+							<li>controller/require - A controller can be created per directive and injected into other directives via require</li>
+							<li>template/templateUrl - Template to use in rendering</li>
+							<li>replace - should the element be replaced?</li>
+							<li>transclude - use content of directive in the body of template?</li>
+							<li>compile/link - functions called on directives for manipulating DOM</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Testing</h2>
+					</section>
+
+					<section>
+						<h2>Unit Testing services, filters, etc.</h2>
+					</section>
 				</section>
 
 				<section>
@@ -225,28 +293,6 @@
 						</ul>
 					</section>
 
-				</section>
-
-				<section>
-					<section>
-						<h2>Testing</h2>
-					</section>
-					<section>
-						<h2>text</h2>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h2>Routes and Views</h2>
-					</section>
-					<section>
-						<h2>Routes? Views? What?</h2>
-						<ul>
-							<li>Navigable: back-button, bookmarks</li>
-							<li></li>
-						</ul>
-					</section>
 				</section>
 
 				<section>
