@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Non-Relational Databases</title>
+
+		<meta name="description" content="Presentation about the history and current impact of non-relational databases">
+		<meta name="author" content="Christian Köberl">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+			
+				<section>
+					<h1>Non-Relational Databases</h1>
+					<h3>NoSQL, NewSQL, CAP and other acronyms</h3>
+					<p>
+						<small>Created by <a href="http://derkoe.wordpress.com">Christian Köberl</a>, May 2013</small>
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h1>Intro</h1>
+					</section>
+
+					<section style="background-image: url('flickr_lordchris_3491321197.jpg');" class="fullscreenimg">
+						<h2>1960s</h2>
+						<div style="bottom: 200px; left: 100px;">Hierarchical and network databases</div>
+						<div style="bottom: 100px; right: 100px;">1966 - <a href="http://www-01.ibm.com/software/data/ims/" target="_blank">IBM IMS</a></div>
+					</section>
+
+					<section style="background-image: url('flickr_etogh_4578652375.jpg');" class="fullscreenimg">
+						<h2>1970s</h2>
+						<div style="top: 100px; right: 100px;">1970 - Edgar F. Codd: A Relational Model of Data for Large Shared Data Banks</div>
+						<div style="bottom: 30px; left: 30px;">1977 - IBM System R -> SQL</div>
+						<div style="bottom: 30px; right: 50px;">1979 - Oracle</div>
+					</section>
+
+					<section style="background-image: url('flickr_nickhorne_3994769743.jpg');" class="fullscreenimg">
+						<h2>1980s</h2>
+						<div style="top: 120px; left: 200px;">Mid 80s: Rise of the RDMS and SQL</div>
+						<div style="bottom: 150px; left: 30px;">1986 - BerkeleyDB - key/value</div>
+						<div style="bottom: 80px; right: 50px;">1989 - Lotus Notes/Domino - document oriented</div>
+					</section>
+
+					<section style="background-image: url('vw-group_tower.jpg');" class="fullscreenimg">
+						<h2>2000 and Beyond</h2>
+						<div style="top: 150px; left: 100px;">Rise of NoSQL</div>
+						<div style="top: 250px; right: 50px;">2000 - Neo4j - graph database</div>
+						<div style="top: 350px; left: 50px;">2003 - Memcached - most used key/value cache</div>
+						<div style="top: 450px; right: 50px;">2005 - CouchDB</div>
+						<div style="top: 550px; left: 50px;">2006 - Google BigTable paper</div>
+					</section>
+
+					<section>
+						<h1>Current Trends</h1>
+					</section>
+
+					<section class="fullscreenimg" style="background-image: url('flickr_kky_704056791.jpg');">
+						<h2>Cloud</h2>
+					</section>
+
+					<section class="fullscreenimg" style="background-image: url('flickr_kky_704056791.jpg');">
+						<h2>Big Data</h2>
+					</section>
+
+					<section class="fullscreenimg" style="background-image: url('flickr_dullhunk_7068119915.jpg');">
+						<h2>Connectivity</h2>
+					</section>
+
+					<section class="fullscreenimg" style="background-image: url('flickr_kky_704056791.jpg');">
+						<h2>Variety</h2>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Relational Databases</h1>
+					</section>
+
+					<section>
+						<img alt="How To Write a CV" src="nosql.jpg" height="700">
+					</section>
+
+					<section>
+						<h2>Why Relational?</h2>
+						<ul>
+							<li>Structured data</li>
+							<li>Separation of application and data</li>
+							<li>Multiple application using the same database</li>
+							<li>Standard (SQL)</li>
+							<li>Tools</li>
+							<li>People (education)</li>
+						</ul>
+					</section>
+
+					<section style="font-size: 2.4em;">
+						<div style="text-align: left; padding-left: 2em;">
+							<div><b>A</b> tomicity</div>
+							<div><b>C</b> onsistency</div>
+							<div><b>I</b> solation</div>
+							<div><b>D</b> urability</div> 
+						</div>
+					</section>
+
+					<section>
+						<h2>Transaction Isolation</h2>
+						<table>
+							<tr><td></td><th>Dirty</th><th>Non-repeatable reads</th><th>Phantom reads</th></tr>
+							<tr><th>Read uncommited</th><td>may occur</td><td>may occur</td><td>may occur</td></tr>
+							<tr><th>Read commited</th><td>-</td><td>may occur</td><td>may occur</td></tr>
+							<tr><th>Repeatable read</th><td>-</td><td>-</td><td>may occur</td></tr>
+							<tr><th>Serializable</th><td>-</td><td>-</td><td>-</td></tr>
+						</table>
+					</section>
+
+					<section>
+						<h2>MVVC</h2>
+						<img alt="MVCC commit" src="mvcc.png" height="390" style="float:left;">
+						<img alt="MVCC rollback" src="mvcc_rollback.png" height="390">
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h1>Problems With Relational Databases</h1>
+					</section>
+
+					<section class="fullscreenimg">
+						<img alt="The hard life of a NoSQL Coder" src="hard_life.jpg">
+					</section>
+
+					<section>
+						<h2>Custom Fields</h2>
+						<div>
+							<img src="custom_fields_1.png" style="float:left;" width="450">
+							<img src="custom_fields_2.png" width="450">
+						</div>
+					</section>
+
+					<section>
+						<h2>Tags, Network Structure</h2>
+						<img alt="Tag cloud" src="wikipedia_Web_2.0_Map.svg.png">
+					</section>
+
+					<section>
+						<h2>Relational Solution (1)</h2>
+						<img alt="ER diagram" src="tags1.png">
+					</section>
+
+					<section>
+						<h2>Relational Solution (2)</h2>
+						<img alt="ER diagram" src="tags2.png">
+					</section>
+
+					<section>
+						<h2>Relational Solution (3)</h2>
+						<img alt="ER diagram" src="tags3.png">
+					</section>
+
+					<section>
+						<h2>Query For Things With Tag 'Java'</h2>
+						<pre><code>SELECT * 
+  FROM Thing
+  JOIN Thing_Tag 
+    ON Thing.Id = Thing_Tag.Thing_Id
+  JOIN Tag 
+    ON Tag.Id = Thing_Tag.Tag_Id
+ WHERE Tag.Tag = 'Java'</code></pre>
+					</section>
+
+					<section>
+						<h2>Query For Tags 'Java' And 'SQL'</h2>
+						<pre><code>SELECT * 
+  FROM Thing
+  JOIN Thing_Tag tt1
+    ON Thing.Id = tt1.Thing_Id
+  JOIN Thing_Tag tt2
+    ON Thing.Id = tt2.Thing_Id
+  JOIN Tag tag1
+    ON tag1.Id = tt1.Tag_Id
+  JOIN Tag tag2
+    ON tag2.Id = tt2.Tag_Id
+ WHERE tt1.Tag = 'Java' AND tt2.Tag = 'SQL'</code></pre>
+					</section>
+
+					<section>
+						<h2>Query For Tags 'Java' Or 'SQL'</h2>
+						<pre><code>SELECT * 
+  FROM Thing
+  JOIN Thing_Tag 
+    ON Thing.Id = Thing_Tag.Thing_Id
+  JOIN Tag 
+    ON Tag.Id = Thing_Tag.Tag_Id
+ WHERE Tag.Tag = 'Java' AND Tag.Tag = 'SQL'</code></pre>
+					</section>
+
+					<section>
+						<h2>Query For Tag 'Java' But Not 'SQL'</h2>
+						<pre><code>SELECT * 
+  FROM Thing
+  JOIN Thing_Tag 
+    ON Thing.Id = Thing_Tag.Thing_Id
+  JOIN Tag 
+    ON Tag.Id = Thing_Tag.Tag_Id
+ WHERE Tag.Tag = 'Java'
+   AND NOT EXISTS 
+      (SELECT 1 
+         FROM Thing_Tag
+         JOIN Tag
+           ON Tag.Id = Thing_Tag.Tag_Id
+        WHERE Thing_Tag.Thing_Id = Thing.Id
+          AND Tag.Tag = 'SQL')</code></pre>
+					</section>
+
+					<section>
+						<h2>Same Queries With Lucene (Solr)</h2>
+						<ul>
+							<li>Tag 'Java':<br><code>tag:Java</code></li>
+							<li>Tag 'Java' and 'SQL':<br><code>tag:Java AND tag:SQL</code></li>
+							<li>Tag 'Java' or 'SQL':<br><code>tag:Java OR tag:SQL</code></li>
+							<li>Tag 'Java' but not 'SQL':<br><code>tag:Java -tag:SQL</code></li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h1>CAP</h1>
+						<p>or the problem with ACID</p>
+					</section>
+
+					<section>
+						<h2>CAP Theorem</h2>
+						<blockquote>
+							It is impossible in the asynchronous network model to implement a read/write data object that guarantees the following properties:
+							<ul>
+								<li>Availability</li>
+								<li>Atomic consistency</li>
+							</ul>
+							<br>
+							in all fair executions (including those in which messages are lost).
+						</blockquote>
+					</section>
+
+					<section>
+						<h2>Consistency</h2>
+						<p>all nodes see the same data at the same time</p>
+						<h2>Availability</h2>
+						<p>guarantee that every request receives a response about whether it was successful or failed</p>
+						<h2>Partition Tolerance</h2>
+						<p>the system continues to operate despite arbitrary message loss or failure of part of the system</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>NoSQL Databases</h1>
+					</section>
+
+					<section>
+						<h2>Key/Value</h2>
+					</section>
+
+					<section>
+						<h2>Document</h2>
+					</section>
+
+					<section>
+						<h2>BigTable</h2>
+					</section>
+
+					<section>
+						<h2>Graph</h2>
+					</section>
+
+				</section>
+
+
+				<section>
+					<section>
+						<h1>THX</h1>
+						<h2>Questions?</h2>
+					</section>
+
+					<section>
+						<h2>Sources</h2>
+						<ul>
+							<li><a href="http://en.wikipedia.org/wiki/Category:Database_management_systems">Wikipedia: Database management systems</a></li>
+							<li><a href="http://blog.knuthaugen.no/2010/03/a-brief-history-of-nosql.html">A Brief History of NoSQL</a></li>
+							<li><a href="http://de.slideshare.net/quipo/nosql-databases-why-what-and-when">Lorenzo Alberton: NoSQL Databases: Why, what and when</a></li>
+							http://ontwik.com/php/nosql-databases-what-why-and-when-lorenzo-alberton/
+							<li class="small">Presentation powered by <a href="http://lab.hakim.se/reveal-js/">reveal.js</a></li>
+						</ul>
+					</section>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				margin: 0,
+
+				theme: 'solarized', // available themes are in /css/theme
+				transition: 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.tabReplace = '   '; hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
