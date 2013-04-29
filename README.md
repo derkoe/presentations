@@ -1,4 +1,4 @@
-javascript-patterns
+Presentations by derkoe
 ===================
 
-Presentation JavaScript Patterns
+See [presentation overview](http://derkoe.github.io/presentations/).
