@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Weather App</title>
+<script src="angular.js"></script>
+<script src="app.js"></script>
+</head>
+<body>
+	<div ng-app="myapp" ng-controller="WeatherCtrl">
+		<h2>Weather in Salzburg, Austria</h2>
+		<weather-icon cloudiness="{{ weather.clouds }}"></weather-icon>
+		<h3>Current: {{ weather.temp.current | temp:2 }}</h3>
+		min: {{ weather.temp.min | temp }}, max: {{ weather.temp.max | temp }}
+	</div>
+</body>
