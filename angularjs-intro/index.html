@@ -282,6 +282,93 @@
 							<li><a href="http://pivotal.github.io/jasmine/">Jasmine</a> for test specs</li>
 						</ul>
 					</section>
+
+					<section>
+						<h2>Testing a Weather Widget</h2>
+						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/yc4yG/show" frameborder="0"></iframe>
+						<iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/yc4yG/embedded/html,js/presentation/" frameborder="0"></iframe>
+					</section>
+
+					<section>
+						<h2>Testing Controllers</h2>
+						<pre><code>  describe('Controller: WeatherCtrl', function() {
+
+    it('calls weatherService to get weather', function() {
+      inject(function($rootScope, $controller) {
+        var weather = { temp : { current : 10 } }, 
+            weatherService = { 
+              getWeather : function() {
+                return weather;
+              }
+            }, 
+            scope = $rootScope.$new;
+
+        $controller('WeatherCtrl', {
+          $scope : scope,
+          weatherService : weatherService
+        });
+        expect(scope.weather).toBe(weather);
+      });
+    });
+  });</code></pre>
+					</section>
+
+					<section>
+						<h2>Testing Services</h2>
+						<pre><code>describe('Service: weatherService', function() {
+
+    var url = 'http://api.openweathermap.org/data/2.5/weather?q=Salzburg,at&units=metric&callback=JSON_CALLBACK';
+    var $httpBackend, weatherService;
+
+    beforeEach(inject(function($injector) {
+      $httpBackend = $injector.get('$httpBackend');
+      weatherService = $injector.get('weatherService');
+    }));
+
+    it('maps the correct current temp', function() {
+      $httpBackend.whenJSONP(url).respond({
+        main : {
+          temp : 10
+        }
+      });
+      $httpBackend.expectJSONP(url);
+      var weather = weatherService.getWeather();
+      $httpBackend.flush();
+
+      expect(weather.temp.current).toBe(10);
+    });
+
+  });</code></pre>
+					</section>
+
+					<section>
+						<h2>Testing Filters</h2>
+						<pre><code>  describe('Filter: temp', function() {
+    var tempFilter;
+    beforeEach(inject(function($filter) {
+      tempFilter = $filter('temp');
+    }));
+
+    it('adds °C', function() {
+      expect(tempFilter(3)).toBe('3.0°C');
+    });
+
+    it('handles precision correctly', function() {
+      expect(tempFilter(3, 10)).toBe('3.0000000000°C');
+    });
+
+    it('handles non-numbers', function() {
+      expect(tempFilter('a')).toBe('°C');
+      expect(tempFilter({})).toBe('°C');
+    });
+  });</code></pre>
+					</section>
+
+					<section>
+						<h2>End-To-End Testing</h2>
+						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/V6vNS/show" frameborder="0"></iframe>
+						<iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/V6vNS/embedded/js/presentation/" frameborder="0"></iframe>
+					</section>
 				</section>
 
 				<section>
