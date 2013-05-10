@@ -377,22 +377,77 @@
 					</section>
 
 					<section>
-						<h3>Controllers</h3>
+						<h2>Views ...</h2>
+						<ul>
+							<li>may read from the $scope: <code>{{ data.name }}</code></li>
+							<li>may write on objects on the $scope<br>
+								<code>ng-model=&quot;data.name&quot;</code></li>
+							<li>may call methods on $scope: <code>ng-click=&quot;save()&quot;</code></li>
+						</ul>
+						<hr>
+						<ul>
+							<li>should never write directly to $scope<br>
+								<code style="color: red">ng-model=&quot;name&quot;</code></li>
+							<li>should not reference DOM</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Controllers ...</h2>
+						<ul>
+							<li>should delegate work to services</li>
+						</ul>
+						<hr>
 						<ul>
 							<li>should not reference DOM</li>
 							<li>should not reference other controllers</li>
 						</ul>
-						<h3>Views</h3>
+					</section>
+
+					<section>
+						<h2>Services ...</h2>
 						<ul>
-							<li>should never write to $scope: <code style="text-decoration: line-through;">ng-model=&quot;myModel&quot;</code></li>
+							<li>should handle server calls ($http)</li>
+							<li>should not reference DOM, controllers and views</li>
 						</ul>
-						<h3>Services</h3>
+						<p>&nbsp;</p>
+						<h2>Directives ...</h2>
 						<ul>
-							<li>should not reference DOM</li>
-							<li></li>
+							<li>may reference the DOM</li>
+							<li>may reference services</li>
+							<li>should not directly handle server calls</li>
+							<li>should not reference controllers and views</li>
 						</ul>
 					</section>
 
+					<section>
+						<h2>Project Structure</h2>
+						<ul>
+							<li>Start project: <a href="https://github.com/angular/angular-seed">Angular Seed</a>, <a href="http://yeoman.io/">Yeoman</a></li>
+							<li>Structure by: 1. logical, 2. technical:
+							<pre><code>scripts
+|- global
+| |- app.js
+| |- directives.js
+| |- filters.js
+| |- services.js
+|- module1
+| |- controllers.js 
+| |- services.js
+|- module2
+| |- controllers.js 
+| |- services.js</code></pre></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Tools</h2>
+						<ul>
+							<li><a href="http://gruntjs.com/"><img alt="Grunt logo" src="http://gruntjs.com/img/grunt-logo.svg" width="120"> Grunt</a></li>
+							<li><a href="http://bower.io/"><img alt="Bower logo" src="http://bower.io/img/bower-logo.png" width="120"> Bower</a></li>
+							<li><a href="http://www.jslint.com/"><img alt="JSLint logo" src="http://plugins.netbeans.org/data/images/1322663515_JSLInt-little1.png"></a></li>
+						</ul>
+					</section>
 				</section>
 
 				<section>

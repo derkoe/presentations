@@ -172,3 +172,7 @@ code {
 	color: white;
 	padding: 4px 0;
 }
+
+.reveal li img {
+	vertical-align: middle;
+}
