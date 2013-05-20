@@ -87,7 +87,7 @@
 						<h2>Cloud</h2>
 					</section>
 
-					<section class="fullscreenimg" style="background-image: url('flickr_kky_704056791.jpg');">
+					<section class="fullscreenimg" style="background-image: url('jdhancock_8031897271.jpg');">
 						<h2>Big Data</h2>
 					</section>
 
@@ -95,7 +95,7 @@
 						<h2>Connectivity</h2>
 					</section>
 
-					<section class="fullscreenimg" style="background-image: url('flickr_kky_704056791.jpg');">
+					<section class="fullscreenimg" style="background-image: url('wikimedia_Variety_is_the_spice_of_life.jpg');">
 						<h2>Variety</h2>
 					</section>
 				</section>
@@ -161,8 +161,8 @@
 					<section>
 						<h2>Custom Fields</h2>
 						<div>
-							<img src="custom_fields_1.png" style="float:left;" width="450">
-							<img src="custom_fields_2.png" width="450">
+							<div style="float:left;"><img src="custom_fields_1.png" width="450"><p>Customer A</p></div>
+							<div><img src="custom_fields_2.png" width="450"><p>Customer B</p></div>
 						</div>
 					</section>
 
@@ -172,17 +172,17 @@
 					</section>
 
 					<section>
-						<h2>Relational Solution (1)</h2>
+						<h2>Tags - Relational Solution (1)</h2>
 						<img alt="ER diagram" src="tags1.png">
 					</section>
 
 					<section>
-						<h2>Relational Solution (2)</h2>
+						<h2>Tags - Relational Solution (2)</h2>
 						<img alt="ER diagram" src="tags2.png">
 					</section>
 
 					<section>
-						<h2>Relational Solution (3)</h2>
+						<h2>Tags - Relational Solution (3)</h2>
 						<img alt="ER diagram" src="tags3.png">
 					</section>
 
@@ -220,7 +220,8 @@
     ON Thing.Id = Thing_Tag.Thing_Id
   JOIN Tag 
     ON Tag.Id = Thing_Tag.Tag_Id
- WHERE Tag.Tag = 'Java' AND Tag.Tag = 'SQL'</code></pre>
+ WHERE Tag.Tag = 'Java' OR Tag.Tag = 'SQL'</code></pre>
+ 						<p>+ eliminate duplicate entries</p>
 					</section>
 
 					<section>
@@ -262,7 +263,7 @@
 					<section>
 						<h2>CAP Theorem</h2>
 						<blockquote>
-							It is impossible in the asynchronous network model to implement a read/write data object that guarantees the following properties:
+							It is <strong>impossible</strong> in the asynchronous network model to implement a read/write data object that guarantees the following properties:
 							<ul>
 								<li>Availability</li>
 								<li>Atomic consistency</li>
@@ -279,6 +280,10 @@
 						<p>guarantee that every request receives a response about whether it was successful or failed</p>
 						<h2>Partition Tolerance</h2>
 						<p>the system continues to operate despite arbitrary message loss or failure of part of the system</p>
+					</section>
+
+					<section>
+						<h2>Partition</h2>
 					</section>
 				</section>
 
