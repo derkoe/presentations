@@ -303,8 +303,9 @@ myThing.getX(); // 42</code></pre>
 						<h2>But be aware of closure</h2>
 						<pre><code class="javascript" contenteditable="true">for(i = 0; i &lt; elms.length; i++) {
 	elm = elms[i];
-	elm.onclick = new function() {
+	elm.onclick = function() {
 		elm.style.display = 'none'; // this will always be the last elm
+		return false;
 	}
 }
 </code></pre>
@@ -312,6 +313,7 @@ myThing.getX(); // 42</code></pre>
 <pre><code class="javascript" contenteditable="true">function createHideHandler(elm) {
 	return function() {
 		elm.style.display = 'none';
+		return false;
 	};
 }
 for(i = 0; i &lt; elms.length; i++) {
@@ -458,7 +460,7 @@ myObj.toString(); // 'This is Kö'
 myObj['toString']; // function() { return 'This is ' + ...
 
 myObj.dateOfBirth = new Date();
-myObj.['lname'] = 'Muster';
+myObj['lname'] = 'Muster';
 						</code></pre>
 					</section>
 
