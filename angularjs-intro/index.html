@@ -206,6 +206,11 @@
 					</section>
 
 					<section>
+							<h2>Forms</h2>
+							<p data-height="450" data-theme-id="0" data-slug-hash="VvwzqB" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+					</section>
+
+					<section>
 							<h2>Form validation</h2>
 							<p data-height="450" data-theme-id="0" data-slug-hash="VvwpLM" data-default-tab="result" data-user="derkoe" class="codepen"></p>
 					</section>
@@ -227,20 +232,17 @@
 
 					<section>
 						<h2>Routes and Redirects</h2>
-						<iframe width="100%" height="100" src="http://jsfiddle.net/derkoe/JzvuN/show"></iframe>
-						<iframe width="100%" height="350" src="http://jsfiddle.net/derkoe/JzvuN/embedded/html,js/presentation/"></iframe>
+						<p data-height="450" data-theme-id="0" data-slug-hash="BoamQd" data-default-tab="result" data-user="derkoe" class="codepen"></p>
 					</section>
 
 					<section>
 						<h2>Routes and Controllers</h2>
-						<iframe width="100%" height="100" src="http://jsfiddle.net/derkoe/dZ8bh/show"></iframe>
-						<iframe width="100%" height="350" src="http://jsfiddle.net/derkoe/dZ8bh/embedded/html,js/presentation/"></iframe>
+						<p data-height="450" data-theme-id="0" data-slug-hash="PPoOmj" data-default-tab="result" data-user="derkoe" class="codepen"></p>
 					</section>
 
 					<section>
 						<h2>Routes and Resolving</h2>
-						<iframe width="100%" height="100" src="http://jsfiddle.net/derkoe/Wk7WD/show"></iframe>
-						<iframe width="100%" height="350" src="http://jsfiddle.net/derkoe/Wk7WD/embedded/html,js/presentation/"></iframe>
+						<p data-height="450" data-theme-id="0" data-slug-hash="ZbEayw" data-default-tab="result" data-user="derkoe" class="codepen"></p>
 					</section>
 				</section>
 
@@ -427,33 +429,11 @@
 					</section>
 
 					<section>
-						<h2>Project Structure</h2>
-						<ul>
-							<li>Start project: <a href="https://github.com/angular/angular-seed">Angular Seed</a>, <a href="http://yeoman.io/">Yeoman</a></li>
-							<li>Structure by: 1. logical, 2. technical:
-							<pre><code>scripts
-|- global
-| |- app.js
-| |- directives.js
-| |- filters.js
-| |- services.js
-|- module1
-| |- controllers.js
-| |- services.js
-|- module2
-| |- controllers.js
-| |- services.js</code></pre></li>
-						</ul>
+						<h2>Angular Style Guide</h2>
+						<a href="https://github.com/johnpapa/angular-styleguide">Angular Style Guide</a>
+						by <a href="http://johnpapa.net/">John Papa</a>
 					</section>
 
-					<section>
-						<h2>Tools</h2>
-						<ul>
-							<li><a href="http://gruntjs.com/"><img alt="Grunt logo" src="http://gruntjs.com/img/grunt-logo.svg" width="120"> Grunt</a></li>
-							<li><a href="http://bower.io/"><img alt="Bower logo" src="http://bower.io/img/bower-logo.png" width="120"> Bower</a></li>
-							<li><a href="http://www.jslint.com/"><img alt="JSLint logo" src="http://plugins.netbeans.org/data/images/1322663515_JSLInt-little1.png"></a></li>
-						</ul>
-					</section>
 				</section>
 
 				<section>
@@ -462,16 +442,40 @@
 					</section>
 
 					<section>
-						<h2>Animations</h2>
-						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/BG8MK/show"></iframe>
-						<iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/BG8MK/embedded/html,js,css/presentation/"></iframe>
+						<h2>Angular 2.0</h2>
+						<ul>
+							<li>Complete rewrite of AngularJS 1.x</li>
+							<li>No two-way binding &rarr; a lot faster</li>
+							<li>Lazy-loading of code and templates</li>
+							<li>Typically coded in TypeScript/AtScript</li>
+							<li><a href="http://angularjs.blogspot.co.at/2015/08/angular-1-and-angular-2-coexistence.html">Angular 1 and 2 integration</a></li>
+						</ul>
 					</section>
 
 					<section>
-						<h2>Controller As Syntax</h2>
-						<iframe width="100%" height="100" src="http://jsfiddle.net/derkoe/SNF9x/show"></iframe>
-						<iframe width="100%" height="350" src="http://jsfiddle.net/derkoe/SNF9x/embedded/html,js/presentation/"></iframe>
+						<h2>Angular 2.0 Example</h2>
+						<p data-height="450" data-theme-id="0" data-slug-hash="KdKyLE" data-default-tab="result" data-user="derkoe" class="codepen"></p>
 					</section>
+
+					<section>
+						<h2>Typescript</h2>
+						<pre><code>@Component({
+  selector: 'todos'
+})
+@View({
+  templateUrl: 'todos.html',
+  directives: [angular.NgFor]
+})
+class Todos {
+  constructor() {
+    this.todos = ['Things to do', 'Another thing'];
+  }
+  addTodo(todo) {
+    this.todos.push(todo);
+  }
+}</code></pre>
+					</section>
+
 				</section>
 
 				<section>
