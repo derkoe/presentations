@@ -1,342 +1,342 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-		<title>AngularJS Intro</title>
+    <title>AngularJS Intro</title>
 
-		<meta name="description" content="A small introduction to AngularJS: data-binding, IoC/DI, directives.">
-		<meta name="author" content="Christian Köberl">
+    <meta name="description" content="A small introduction to AngularJS: data-binding, IoC/DI, directives.">
+    <meta name="author" content="Christian Köberl">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
-		<link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js/css/theme/league.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
 
-		<!--[if lt IE 9]>
-		<script src="../reveal.js/lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
 
-	<body>
+  <body>
 
-		<div class="reveal">
+    <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
 
-				<section>
-					<h1>AngularJS Intro</h1>
-					<h3>Data-binding, dependency injection, directives.</h3>
-					<p>
-						<small>Created by <a href="http://derkoe.wordpress.com">Christian Köberl</a></small>
-					</p>
-				</section>
+        <section>
+          <h1>AngularJS Intro</h1>
+          <h3>Data-binding, dependency injection, directives.</h3>
+          <p>
+            <small>Created by <a href="http://derkoe.wordpress.com">Christian Köberl</a></small>
+          </p>
+        </section>
 
-				<section>
-					<section>
-						<h1>Intro</h1>
-					</section>
+        <section>
+          <section>
+            <h1>Intro</h1>
+          </section>
 
-					<section>
-						<h2>AngularJS in 30 Seconds</h2>
-						<p data-height="400" data-theme-id="0" data-slug-hash="gaOMYL" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+          <section>
+            <h2>AngularJS in 30 Seconds</h2>
+            <p data-height="400" data-theme-id="0" data-slug-hash="gaOMYL" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-						<h2>AngularJS is more</h2>
-						<ul>
-							<li>MVC with fully two-way data-binding</li>
-							<li>Declarative form validation</li>
-							<li>Route management (enables deep linking)</li>
-							<li>Dependency Injection - yeah Spring for JS</li>
-							<li>Directives: reusable components, enhancing HTML, integrate 3rd party libs</li>
-						</ul>
-					</section>
-				</section>
+          <section>
+            <h2>AngularJS is more</h2>
+            <ul>
+              <li>MVC with fully two-way data-binding</li>
+              <li>Declarative form validation</li>
+              <li>Route management (enables deep linking)</li>
+              <li>Dependency Injection - yeah Spring for JS</li>
+              <li>Directives: reusable components, enhancing HTML, integrate 3rd party libs</li>
+            </ul>
+          </section>
+        </section>
 
-				<section>
-					<section>
-						<h1>MVC and Data-Binding</h1>
-					</section>
+        <section>
+          <section>
+            <h1>MVC and Data-Binding</h1>
+          </section>
 
-					<section>
-						<h2>Model View Controller</h2>
-						<ul>
-							<li><b>Model</b><br>a plain JavaScript object (POJSO)</li>
-							<li><b>View</b><br>a HTML template using directives and expressions enclosed in <code>{{ }}</code></li>
-							<li><b>Controller</b><br>a JavaScript object that gets the <code>$scope</code> and services injected. Creates and changes the model.</li>
-						</ul>
-					</section>
+          <section>
+            <h2>Model View Controller</h2>
+            <ul>
+              <li><b>Model</b><br>a plain JavaScript object (POJSO)</li>
+              <li><b>View</b><br>a HTML template using directives and expressions enclosed in <code>{{ }}</code></li>
+              <li><b>Controller</b><br>a JavaScript object that gets the <code>$scope</code> and services injected. Creates and changes the model.</li>
+            </ul>
+          </section>
 
-					<section>
-						<h2>Model View Controller in Code</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="zvYBYb" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+          <section>
+            <h2>Model View Controller in Code</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="zvYBYb" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-						<h2>Controllers and Interaction</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="NGWrqw" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
-				</section>
+          <section>
+            <h2>Controllers and Interaction</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="NGWrqw" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
+        </section>
 
-                <section>
-                    <section>
-                        <h1>Components</h1>
-                    </section>
-                    
-                    <section>
-                        <h2>Components</h2>
-                        <ul>
-                            <li>New in Angular 1.5</li>
-                            <li>More Angular 2.x style</li>
-                        </ul>
-                        <pre><code>&lt;my-tabs&gt;
-  &lt;my-tab title=&quot;This is tab&quot;&gt;
-    &lt;p&gt;A tab content&lt;/p&gt;
-  &lt;/my-tab&gt;
-  &lt;my-tab title=&quot;Another tab&quot;&gt;
-    &lt;p&gt;Some more tabby stuff&lt;/p&gt;
-  &lt;/my-tab&gt;
-&lt;/my-tabs&gt;</code></pre>
-                    </section>
-                    
-                    <section>
-                        <h2>Simple Components</h2>
-                        <p data-height="450" data-theme-id="0" data-slug-hash="ONRjja" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-                    </section>
-                    
-                    <section>
-                        <h2>Complex Components</h2>
-                        <p data-height="450" data-theme-id="0" data-slug-hash="bpwrpQ" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-                    </section>
-                </section>
+        <section>
+          <section>
+            <h1>Components</h1>
+          </section>
 
-				<section>
-					<section>
-						<h1>Services and Dependency Injection</h1>
-					</section>
+          <section>
+            <h2>Components</h2>
+            <ul>
+              <li>New in Angular 1.5</li>
+              <li>More Angular 2.x style</li>
+            </ul>
+            <pre><code>&lt;my-tabs&gt;
+        &lt;my-tab title=&quot;This is tab&quot;&gt;
+        &lt;p&gt;A tab content&lt;/p&gt;
+        &lt;/my-tab&gt;
+        &lt;my-tab title=&quot;Another tab&quot;&gt;
+        &lt;p&gt;Some more tabby stuff&lt;/p&gt;
+        &lt;/my-tab&gt;
+        &lt;/my-tabs&gt;</code></pre>
+          </section>
 
-					<section>
-						<h2>Sharing State Between Controllers</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="jbOrrx" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+          <section>
+            <h2>Simple Components</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="ONRjja" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-						<h2>Using Other Services ($http)</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="GpRqNW" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+          <section>
+            <h2>Complex Components</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="bpwrpQ" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
+        </section>
 
-                    <section>
-                        <h2>Constant, Value, Service, Factory</h2>
-                    </section>
-                </section>
+        <section>
+          <section>
+            <h1>Services and Dependency Injection</h1>
+          </section>
 
-				<section>
-					<section>
-						<h1>Promises</h1>
-					</section>
+          <section>
+            <h2>Sharing State Between Controllers</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="jbOrrx" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-						<h2>Promises</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="xwxOXb" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+          <section>
+            <h2>Using Other Services ($http)</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="GpRqNW" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-				</section>
+          <section>
+            <h2>Constant, Value, Service, Factory</h2>
+          </section>
+        </section>
 
-				<section>
-					<section>
-						<h1>Built-in Directives</h1>
-					</section>
+        <section>
+          <section>
+            <h1>Promises</h1>
+          </section>
 
-					<section>
-						<h2>Invoking/Using Directives</h2>
-						<ul>
-							<li>Attributes:
-								<ul>
-									<li>Standard: <code>&lt;span ng-bind=&quot;[expression]&quot;&gt;</code><br></li>
-									<li>HTML5 data-attributes: <code>&lt;input data-ng-model=&quot;[expression]&quot;&gt;</code></li>
-								</ul>
-							</li>
-							<li>Tag: <code>&lt;ng-form&gt;...&lt;/ng-form&gt;</code></li>
-							<li>CSS class: <code>&lt;span class=&quot;ng-click: [expression]&quot;&gt;</code></li>
-							<li>Comment: <code>&lt;!-- directive:my-directive --&gt;</code></li>
-							<li>Hint: The JavaScript name of the directive is camelCase, e.g. <code>ngModel</code></li>
-						</ul>
-					</section>
+          <section>
+            <h2>Promises</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="xwxOXb" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-						<h2>ng-bind And Expressions</h2>
-						<ul>
-							<li>This <code>&lt;span&gt;{{ expression }}&lt;/span&gt;</code></li>
-							<li>Is the same as <code>&lt;span ng-bind=&quot;expression&quot;&gt;&lt;/span&gt;</code></li>
-							<li>Expressions:
-								<ul>
-									<li><code>27 + 15 &rArr; 42</code></li>
-									<li><code>person.name</code> &rArr; get person object form $scope and use name attribute</li>
-									<li><code>myFunction()</code> &rArr; get result of call to myFunction on $scope</li>
-								</ul>
-							</li>
-						</ul>
-					</section>
+        </section>
 
-					<section>
-						<h2>ng-click And Other Events</h2>
-						<ul>
-							<li>Expressions in action directives should be functions:
-							<pre><code>&lt;button ng-click=&quot;doSomething()&quot;&gt;Click Me&lt;/button&gt;</code></pre></li>
-							<li>Other events: ng-dblclick, ng-submit, ng-mouse* (mouseup, mousemove, ...)</li>
-							<li>ng-change is called on each change of the value
-								<pre><code>&lt;input type=&quot;checkbox&quot; ng-model=&quot;confirmed&quot; ng-change=&quot;change()&quot; /&gt;</code></pre>
-							</li>
-						</ul>
-					</section>
+        <section>
+          <section>
+            <h1>Built-in Directives</h1>
+          </section>
 
-					<section>
-						<h2>Loops And ng-repeat</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="bVGeYv" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+          <section>
+            <h2>Invoking/Using Directives</h2>
+            <ul>
+              <li>Attributes:
+                <ul>
+                  <li>Standard: <code>&lt;span ng-bind=&quot;[expression]&quot;&gt;</code><br></li>
+                  <li>HTML5 data-attributes: <code>&lt;input data-ng-model=&quot;[expression]&quot;&gt;</code></li>
+                </ul>
+              </li>
+              <li>Tag: <code>&lt;ng-form&gt;...&lt;/ng-form&gt;</code></li>
+              <li>CSS class: <code>&lt;span class=&quot;ng-click: [expression]&quot;&gt;</code></li>
+              <li>Comment: <code>&lt;!-- directive:my-directive --&gt;</code></li>
+              <li>Hint: The JavaScript name of the directive is camelCase, e.g. <code>ngModel</code></li>
+            </ul>
+          </section>
 
-					<section>
-						<h2>Selects and ng-options</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="MaWezd" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
-				</section>
+          <section>
+            <h2>ng-bind And Expressions</h2>
+            <ul>
+              <li>This <code>&lt;span&gt;{{ expression }}&lt;/span&gt;</code></li>
+              <li>Is the same as <code>&lt;span ng-bind=&quot;expression&quot;&gt;&lt;/span&gt;</code></li>
+              <li>Expressions:
+                <ul>
+                  <li><code>27 + 15 &rArr; 42</code></li>
+                  <li><code>person.name</code> &rArr; get person object form $scope and use name attribute</li>
+                  <li><code>myFunction()</code> &rArr; get result of call to myFunction on $scope</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
 
-				<section>
-					<section>
-						<h1>Filters</h1>
-					</section>
+          <section>
+            <h2>ng-click And Other Events</h2>
+            <ul>
+              <li>Expressions in action directives should be functions:
+              <pre><code>&lt;button ng-click=&quot;doSomething()&quot;&gt;Click Me&lt;/button&gt;</code></pre></li>
+              <li>Other events: ng-dblclick, ng-submit, ng-mouse* (mouseup, mousemove, ...)</li>
+              <li>ng-change is called on each change of the value
+                <pre><code>&lt;input type=&quot;checkbox&quot; ng-model=&quot;confirmed&quot; ng-change=&quot;change()&quot; /&gt;</code></pre>
+              </li>
+            </ul>
+          </section>
 
-					<section>
-						<h2>Using filters</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="epYgrw" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+          <section>
+            <h2>Loops And ng-repeat</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="bVGeYv" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-						<h2>Creating filters</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="LpYxXR" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+          <section>
+            <h2>Selects and ng-options</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="MaWezd" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
+        </section>
 
-					<section>
-						<h2>The 'filter' Filter</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="PPoWre" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+        <section>
+          <section>
+            <h1>Filters</h1>
+          </section>
 
-				</section>
+          <section>
+            <h2>Using filters</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="epYgrw" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-				<section>
-					<section>
-							<h1>Forms and Validation</h1>
-					</section>
+          <section>
+            <h2>Creating filters</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="LpYxXR" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-							<h2>Forms</h2>
-							<p data-height="450" data-theme-id="0" data-slug-hash="VvwzqB" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+          <section>
+            <h2>The 'filter' Filter</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="PPoWre" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-							<h2>Form validation</h2>
-							<p data-height="450" data-theme-id="0" data-slug-hash="VvwpLM" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
-				</section>
+        </section>
 
-				<section>
-					<section>
-						<h1>Routes and Views</h1>
-					</section>
+        <section>
+          <section>
+              <h1>Forms and Validation</h1>
+          </section>
 
-					<section>
-						<h2>Routes? Views? What?</h2>
-						<ul>
-							<li>Navigable: back-button, bookmarks</li>
-							<li>Structure application in parts</li>
-							<li>Lazy load templates from server</li>
-						</ul>
-					</section>
+          <section>
+              <h2>Forms</h2>
+              <p data-height="450" data-theme-id="0" data-slug-hash="VvwzqB" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-						<h2>Routes and Redirects</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="BoamQd" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+          <section>
+              <h2>Form validation</h2>
+              <p data-height="450" data-theme-id="0" data-slug-hash="VvwpLM" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
+        </section>
 
-					<section>
-						<h2>Routes and Controllers</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="PPoOmj" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+        <section>
+          <section>
+            <h1>Routes and Views</h1>
+          </section>
 
-					<section>
-						<h2>Routes and Resolving</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="ZbEayw" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
-				</section>
+          <section>
+            <h2>Routes? Views? What?</h2>
+            <ul>
+              <li>Navigable: back-button, bookmarks</li>
+              <li>Structure application in parts</li>
+              <li>Lazy load templates from server</li>
+            </ul>
+          </section>
 
-				<section>
-					<section>
-						<h1>Creating Directives</h1>
-					</section>
+          <section>
+            <h2>Routes and Redirects</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="BoamQd" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-						<h2>Creating Reusable Components</h2>
-						<iframe width="100%" height="150" src="http://jsfiddle.net/derkoe/tjujY/show"></iframe>
-						<iframe width="100%" height="300" src="http://jsfiddle.net/derkoe/tjujY/embedded/html,js/presentation/"></iframe>
-					</section>
+          <section>
+            <h2>Routes and Controllers</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="PPoOmj" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-						<h2>Anatomy Of Directives</h2>
-						<ul>
-							<li>restrict - E - element, A - attribute, C - class,  M - comment</li>
-							<li>scope - An isolate scope for the directive, if not there scope is inherited from enclosing controller</li>
-							<li>controller/require - A controller can be created per directive and injected into other directives via require</li>
-							<li>template/templateUrl - Template to use in rendering</li>
-							<li>replace - should the element be replaced?</li>
-							<li>transclude - use content of directive in the body of template?</li>
-							<li>compile/link - functions called on directives for manipulating DOM</li>
-						</ul>
-					</section>
+          <section>
+            <h2>Routes and Resolving</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="ZbEayw" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
+        </section>
 
-					<section>
-						<h2>Directives and Scope</h2>
-						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/vybZy/show"></iframe>
-						<iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/vybZy/embedded/html,js/presentation/"></iframe>
-					</section>
-				</section>
+        <section>
+          <section>
+            <h1>Creating Directives</h1>
+          </section>
 
-				<section>
-					<section>
-						<h1>Testing</h1>
-					</section>
+          <section>
+            <h2>Creating Reusable Components</h2>
+            <iframe width="100%" height="150" src="http://jsfiddle.net/derkoe/tjujY/show"></iframe>
+            <iframe width="100%" height="300" src="http://jsfiddle.net/derkoe/tjujY/embedded/html,js/presentation/"></iframe>
+          </section>
 
-					<section>
-						<h2>Unit Testing services, filters, etc.</h2>
-						<ul>
-							<li>Test-Runner: <a href="http://karma-runner.github.io/">Karma</a> (aka Testacular)</li>
-							<li>angular-mocks.js to mock services</li>
-							<li><a href="http://pivotal.github.io/jasmine/">Jasmine</a> for test specs</li>
-						</ul>
-					</section>
+          <section>
+            <h2>Anatomy Of Directives</h2>
+            <ul>
+              <li>restrict - E - element, A - attribute, C - class,  M - comment</li>
+              <li>scope - An isolate scope for the directive, if not there scope is inherited from enclosing controller</li>
+              <li>controller/require - A controller can be created per directive and injected into other directives via require</li>
+              <li>template/templateUrl - Template to use in rendering</li>
+              <li>replace - should the element be replaced?</li>
+              <li>transclude - use content of directive in the body of template?</li>
+              <li>compile/link - functions called on directives for manipulating DOM</li>
+            </ul>
+          </section>
 
-					<section>
-						<h2>Testing a Weather Widget</h2>
-						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/yc4yG/show"></iframe>
-						<iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/yc4yG/embedded/html,js/presentation/"></iframe>
-					</section>
+          <section>
+            <h2>Directives and Scope</h2>
+            <iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/vybZy/show"></iframe>
+            <iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/vybZy/embedded/html,js/presentation/"></iframe>
+          </section>
+        </section>
 
-					<section>
-						<h2>Testing Controllers</h2>
-						<pre><code>  describe('Controller: WeatherCtrl', function() {
+        <section>
+          <section>
+            <h1>Testing</h1>
+          </section>
+
+          <section>
+            <h2>Unit Testing services, filters, etc.</h2>
+            <ul>
+              <li>Test-Runner: <a href="http://karma-runner.github.io/">Karma</a> (aka Testacular)</li>
+              <li>angular-mocks.js to mock services</li>
+              <li><a href="http://pivotal.github.io/jasmine/">Jasmine</a> for test specs</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Testing a Weather Widget</h2>
+            <iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/yc4yG/show"></iframe>
+            <iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/yc4yG/embedded/html,js/presentation/"></iframe>
+          </section>
+
+          <section>
+            <h2>Testing Controllers</h2>
+            <pre><code>  describe('Controller: WeatherCtrl', function() {
 
     it('calls weatherService to get weather', function() {
       inject(function($rootScope, $controller) {
@@ -356,11 +356,11 @@
       });
     });
   });</code></pre>
-					</section>
+          </section>
 
-					<section>
-						<h2>Testing Services</h2>
-						<pre><code>describe('Service: weatherService', function() {
+          <section>
+            <h2>Testing Services</h2>
+            <pre><code>describe('Service: weatherService', function() {
 
     var url = 'http://api.openweathermap.org/data/2.5/weather?q=Salzburg,at&amp;units=metric&callback=JSON_CALLBACK';
     var $httpBackend, weatherService;
@@ -384,11 +384,11 @@
     });
 
   });</code></pre>
-					</section>
+          </section>
 
-					<section>
-						<h2>Testing Filters</h2>
-						<pre><code>  describe('Filter: temp', function() {
+          <section>
+            <h2>Testing Filters</h2>
+            <pre><code>  describe('Filter: temp', function() {
     var tempFilter;
     beforeEach(inject(function($filter) {
       tempFilter = $filter('temp');
@@ -407,96 +407,96 @@
       expect(tempFilter({})).toBe('°C');
     });
   });</code></pre>
-					</section>
+          </section>
 
-					<section>
-						<h2>End-To-End Testing</h2>
-						<iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/V6vNS/show"></iframe>
-						<iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/V6vNS/embedded/js/presentation/"></iframe>
-					</section>
-				</section>
+          <section>
+            <h2>End-To-End Testing</h2>
+            <iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/V6vNS/show"></iframe>
+            <iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/V6vNS/embedded/js/presentation/"></iframe>
+          </section>
+        </section>
 
-				<section>
-					<section>
-						<h1>Best Practices</h1>
-					</section>
+        <section>
+          <section>
+            <h1>Best Practices</h1>
+          </section>
 
-					<section>
-						<h2>Views ...</h2>
-						<ul>
-							<li>may read from the $scope: <code>{{ data.name }}</code></li>
-							<li>may write on objects on the $scope<br>
-								<code>ng-model=&quot;data.name&quot;</code></li>
-							<li>may call methods on $scope: <code>ng-click=&quot;save()&quot;</code></li>
-						</ul>
-						<hr>
-						<ul>
-							<li>should never write directly to $scope<br>
-								<code style="color: red">ng-model=&quot;name&quot;</code></li>
-							<li>should not reference DOM</li>
-						</ul>
-					</section>
+          <section>
+            <h2>Views ...</h2>
+            <ul>
+              <li>may read from the $scope: <code>{{ data.name }}</code></li>
+              <li>may write on objects on the $scope<br>
+                <code>ng-model=&quot;data.name&quot;</code></li>
+              <li>may call methods on $scope: <code>ng-click=&quot;save()&quot;</code></li>
+            </ul>
+            <hr>
+            <ul>
+              <li>should never write directly to $scope<br>
+                <code style="color: red">ng-model=&quot;name&quot;</code></li>
+              <li>should not reference DOM</li>
+            </ul>
+          </section>
 
-					<section>
-						<h2>Controllers ...</h2>
-						<ul>
-							<li>should delegate work to services</li>
-						</ul>
-						<hr>
-						<ul>
-							<li>should not reference DOM</li>
-							<li>should not reference other controllers</li>
-						</ul>
-					</section>
+          <section>
+            <h2>Controllers ...</h2>
+            <ul>
+              <li>should delegate work to services</li>
+            </ul>
+            <hr>
+            <ul>
+              <li>should not reference DOM</li>
+              <li>should not reference other controllers</li>
+            </ul>
+          </section>
 
-					<section>
-						<h2>Services ...</h2>
-						<ul>
-							<li>should handle server calls ($http)</li>
-							<li>should not reference DOM, controllers and views</li>
-						</ul>
-						<p>&nbsp;</p>
-						<h2>Directives ...</h2>
-						<ul>
-							<li>may reference the DOM</li>
-							<li>may reference services</li>
-							<li>should not directly handle server calls</li>
-							<li>should not reference controllers and views</li>
-						</ul>
-					</section>
+          <section>
+            <h2>Services ...</h2>
+            <ul>
+              <li>should handle server calls ($http)</li>
+              <li>should not reference DOM, controllers and views</li>
+            </ul>
+            <p>&nbsp;</p>
+            <h2>Directives ...</h2>
+            <ul>
+              <li>may reference the DOM</li>
+              <li>may reference services</li>
+              <li>should not directly handle server calls</li>
+              <li>should not reference controllers and views</li>
+            </ul>
+          </section>
 
-					<section>
-						<h2>Angular Style Guide</h2>
-						<a href="https://github.com/johnpapa/angular-styleguide">Angular Style Guide</a>
-						by <a href="http://johnpapa.net/">John Papa</a>
-					</section>
+          <section>
+            <h2>Angular Style Guide</h2>
+            <a href="https://github.com/johnpapa/angular-styleguide">Angular Style Guide</a>
+            by <a href="http://johnpapa.net/">John Papa</a>
+          </section>
 
-				</section>
+        </section>
 
-				<section>
-					<section>
-						<h1>News</h1>
-					</section>
+        <section>
+          <section>
+            <h1>News</h1>
+          </section>
 
-					<section>
-						<h2>Angular 2.0</h2>
-						<ul>
-							<li>Complete rewrite of AngularJS 1.x</li>
-							<li>No two-way binding &rarr; a lot faster</li>
-							<li>Lazy-loading of code and templates</li>
-							<li>Typically coded in TypeScript/AtScript</li>
-							<li><a href="http://angularjs.blogspot.co.at/2015/08/angular-1-and-angular-2-coexistence.html">Angular 1 and 2 integration</a></li>
-						</ul>
-					</section>
+          <section>
+            <h2>Angular 2.0</h2>
+            <ul>
+              <li>Complete rewrite of AngularJS 1.x</li>
+              <li>No two-way binding &rarr; a lot faster</li>
+              <li>Lazy-loading of code and templates</li>
+              <li>Typically coded in TypeScript/AtScript</li>
+              <li><a href="http://angularjs.blogspot.co.at/2015/08/angular-1-and-angular-2-coexistence.html">Angular 1 and 2 integration</a></li>
+            </ul>
+          </section>
 
-					<section>
-						<h2>Angular 2.0 Example</h2>
-						<p data-height="450" data-theme-id="0" data-slug-hash="KdKyLE" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-					</section>
+          <section>
+            <h2>Angular 2.0 Example</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="KdKyLE" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
 
-					<section>
-						<h2>Typescript</h2>
-						<pre><code>@Component({
+          <section>
+            <h2>Typescript</h2>
+            <pre><code>@Component({
   selector: 'todos'
 })
 @View({
@@ -511,59 +511,58 @@ class Todos {
     this.todos.push(todo);
   }
 }</code></pre>
-					</section>
+          </section>
 
-				</section>
+        </section>
 
-				<section>
-					<section>
-						<h1>THX</h1>
-						<h2>Questions?</h2>
-					</section>
+        <section>
+          <section>
+            <h1>THX</h1>
+            <h2>Questions?</h2>
+          </section>
 
-					<section>
-						<h2>Sources</h2>
-						<ul>
-							<li><a href="http://angularjs.org/">AngularJS home page</a></li>
-							<li><a href="http://egghead.io/">Videos on egghead.io</a></li>
-							<li><a href="http://www.yearofmoo.com/">Year Of Moo</a></li>
-							<li><a href="https://www.youtube.com/watch?v=ZhfUv0spHCY">AngularJS MTV Meetup: Best Practices (2012/12/11)</a></li>
-							<li class="small">Presentation powered by <a href="http://lab.hakim.se/reveal-js/">reveal.js</a></li>
-						</ul>
-					</section>
-				</section>
-			</div>
+          <section>
+            <h2>Sources</h2>
+            <ul>
+              <li><a href="http://angularjs.org/">AngularJS home page</a></li>
+              <li><a href="http://egghead.io/">Videos on egghead.io</a></li>
+              <li><a href="http://www.yearofmoo.com/">Year Of Moo</a></li>
+              <li><a href="https://www.youtube.com/watch?v=ZhfUv0spHCY">AngularJS MTV Meetup: Best Practices (2012/12/11)</a></li>
+              <li class="small">Presentation powered by <a href="http://lab.hakim.se/reveal-js/">reveal.js</a></li>
+            </ul>
+          </section>
+        </section>
+      </div>
 
-		</div>
+    </div>
 
-		<script src="../reveal.js/lib/js/head.min.js"></script>
-		<script src="../reveal.js/js/reveal.min.js"></script>
-		<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+    <script src="../reveal.js/lib/js/head.min.js"></script>
+    <script src="../reveal.js/js/reveal.js"></script>
+    <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
-		<script>
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
 
-				margin: 0,
+        margin: 0,
 
-				theme: 'solarized', // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+        transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.tabReplace = '   '; hljs.initHighlightingOnLoad(); } },
-					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.tabReplace = '   '; hljs.initHighlightingOnLoad(); } },
+          { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
 
-		</script>
+    </script>
 
-	</body>
+  </body>
 </html>
