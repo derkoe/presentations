@@ -101,16 +101,17 @@
             <h2>Components</h2>
             <ul>
               <li>New in Angular 1.5</li>
+              <li>Simpler form of Angular <code>directive</code></li>
               <li>More Angular 2.x style</li>
             </ul>
             <pre><code>&lt;my-tabs&gt;
-        &lt;my-tab title=&quot;This is tab&quot;&gt;
-        &lt;p&gt;A tab content&lt;/p&gt;
-        &lt;/my-tab&gt;
-        &lt;my-tab title=&quot;Another tab&quot;&gt;
-        &lt;p&gt;Some more tabby stuff&lt;/p&gt;
-        &lt;/my-tab&gt;
-        &lt;/my-tabs&gt;</code></pre>
+  &lt;my-tab title=&quot;This is tab&quot;&gt;
+    &lt;p&gt;A tab content&lt;/p&gt;
+  &lt;/my-tab&gt;
+  &lt;my-tab title=&quot;Another tab&quot;&gt;
+    &lt;p&gt;Some more tabby stuff&lt;/p&gt;
+  &lt;/my-tab&gt;
+&lt;/my-tabs&gt;</code></pre>
           </section>
 
           <section>
@@ -122,38 +123,14 @@
             <h2>Complex Components</h2>
             <p data-height="450" data-theme-id="0" data-slug-hash="bpwrpQ" data-default-tab="result" data-user="derkoe" class="codepen"></p>
           </section>
-        </section>
-
-        <section>
-          <section>
-            <h1>Services and Dependency Injection</h1>
-          </section>
 
           <section>
-            <h2>Sharing State Between Controllers</h2>
-            <p data-height="450" data-theme-id="0" data-slug-hash="jbOrrx" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+            <h2>Components vs. Directives</h2>
+            <ul>
+              <li>Components should be used as the default (Angular > 1.5)</li>
+              <li>Directives for special DOM manipulation</li>
+            </ul>
           </section>
-
-          <section>
-            <h2>Using Other Services ($http)</h2>
-            <p data-height="450" data-theme-id="0" data-slug-hash="GpRqNW" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-          </section>
-
-          <section>
-            <h2>Constant, Value, Service, Factory</h2>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h1>Promises</h1>
-          </section>
-
-          <section>
-            <h2>Promises</h2>
-            <p data-height="450" data-theme-id="0" data-slug-hash="xwxOXb" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-          </section>
-
         </section>
 
         <section>
@@ -239,6 +216,77 @@
 
         <section>
           <section>
+            <h1>Services and Dependency Injection</h1>
+          </section>
+
+          <section>
+            <h2>Sharing State Between Controllers</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="jbOrrx" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
+
+          <section>
+            <h2>Using Other Services ($http)</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="GpRqNW" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
+
+          <section>
+            <h2>Value, Factory, Service</h2>
+            <ul>
+              <li>value - a simple value object, no dependency injection
+                <br><pre><code>module.value('clientId', clientId)</code></pre></li>
+              <li>factory - a factory method creating objects
+                <br><pre><code>module.factory('client', function clientFactory(clientId) {
+  var client = {};
+  return client; 
+})</code></pre></li>
+              <li>service - creating objects via constructor
+                <br><pre><code>module.service('client', function Client(clientId) {
+  this.clientId = clientId;
+})</code></pre></li>
+
+            </ul>
+          </section>
+
+          <section>
+            <h2>Dependency Injection - Excercise</h2>
+            <ul>
+              <li>Create a module with a value <code>backendUrl</code> "https://jsontest-derkoe.appspot.com/?service=date"</li>
+              <li>Create a service calling the <code>backendUrl</code> via GET (using $http)</li>
+              <li>Create a component &lt;my-date&gt; displaying the current date</li>
+            </ul>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h1>Promises</h1>
+          </section>
+
+          <section>
+            <h2>Promises for backend communication</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="xwxOXb" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
+
+          <section>
+            <h2>Promises for modal handling</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="oxBgrG" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
+
+          <section>
+            <h2>Promises - Excercise</h2>
+            <ul>
+              <li>Button to open modal dialog</li>
+              <li>In dialog button to open the same dialog, and so on ...</li>
+              <li>After closing all dialogs count the total number</li>
+              <li>Use <a href="http://codepen.io/derkoe/pen/oxBgrG?editors=1010">modal example</a> as base</li>
+            </ul>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
               <h1>Forms and Validation</h1>
           </section>
 
@@ -280,37 +328,6 @@
           <section>
             <h2>Routes and Resolving</h2>
             <p data-height="450" data-theme-id="0" data-slug-hash="ZbEayw" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h1>Creating Directives</h1>
-          </section>
-
-          <section>
-            <h2>Creating Reusable Components</h2>
-            <iframe width="100%" height="150" src="http://jsfiddle.net/derkoe/tjujY/show"></iframe>
-            <iframe width="100%" height="300" src="http://jsfiddle.net/derkoe/tjujY/embedded/html,js/presentation/"></iframe>
-          </section>
-
-          <section>
-            <h2>Anatomy Of Directives</h2>
-            <ul>
-              <li>restrict - E - element, A - attribute, C - class,  M - comment</li>
-              <li>scope - An isolate scope for the directive, if not there scope is inherited from enclosing controller</li>
-              <li>controller/require - A controller can be created per directive and injected into other directives via require</li>
-              <li>template/templateUrl - Template to use in rendering</li>
-              <li>replace - should the element be replaced?</li>
-              <li>transclude - use content of directive in the body of template?</li>
-              <li>compile/link - functions called on directives for manipulating DOM</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2>Directives and Scope</h2>
-            <iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/vybZy/show"></iframe>
-            <iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/vybZy/embedded/html,js/presentation/"></iframe>
           </section>
         </section>
 
@@ -490,27 +507,27 @@
           </section>
 
           <section>
-            <h2>Angular 2.0 Example</h2>
-            <p data-height="450" data-theme-id="0" data-slug-hash="KdKyLE" data-default-tab="result" data-user="derkoe" class="codepen"></p>
-          </section>
-
-          <section>
-            <h2>Typescript</h2>
+            <h2>Angular 2.0 in Typescript</h2>
             <pre><code>@Component({
-  selector: 'todos'
-})
-@View({
-  templateUrl: 'todos.html',
-  directives: [angular.NgFor]
+  selector: 'todos',
+  templateUrl: 'todos.html'
 })
 class Todos {
-  constructor() {
-    this.todos = ['Things to do', 'Another thing'];
-  }
+  todos = ["Things to do", "Another thing"];
   addTodo(todo) {
     this.todos.push(todo);
   }
 }</code></pre>
+            <pre><code>&lt;form (submit)=&quot;addTodo(todotext.value)&quot;&gt;
+  &lt;input placeholder=&quot;Enter your todo&quot; #todotext&gt;
+  &lt;button type=&quot;submit&quot;&gt;Add Todo&lt;/button&gt;
+&lt;/form&gt;
+&lt;ul&gt;&lt;li *ngFor=&quot;#todo of todos&quot;&gt;{{ todo }}&lt;/li&gt;&lt;/ul&gt;</code></pre>
+          </section>
+
+          <section>
+            <h2>Angular 2.0 Example</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="BKpvjd" data-default-tab="result" data-user="derkoe" class="codepen"></p>
           </section>
 
         </section>
@@ -528,6 +545,7 @@ class Todos {
               <li><a href="http://egghead.io/">Videos on egghead.io</a></li>
               <li><a href="http://www.yearofmoo.com/">Year Of Moo</a></li>
               <li><a href="https://www.youtube.com/watch?v=ZhfUv0spHCY">AngularJS MTV Meetup: Best Practices (2012/12/11)</a></li>
+              <li><a href="https://blogs.msdn.microsoft.com/windowsappdev/2013/06/11/all-about-promises-for-windows-store-apps-written-in-javascript/">All about promises</a></li>
               <li class="small">Presentation powered by <a href="http://lab.hakim.se/reveal-js/">reveal.js</a></li>
             </ul>
           </section>
