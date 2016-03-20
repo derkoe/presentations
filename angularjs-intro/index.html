@@ -41,7 +41,7 @@
           <h1>AngularJS Intro</h1>
           <h3>Data-binding, dependency injection, directives.</h3>
           <p>
-            <small>Created by <a href="http://derkoe.wordpress.com">Christian Köberl</a></small>
+            <small>Created by <a href="https://derkoe.github.io/">Christian Köberl</a></small>
           </p>
         </section>
 
@@ -125,10 +125,44 @@
           </section>
 
           <section>
+              <h2>Anatomy of a Component</h2>
+              <pre><code>module.component('my-comp', {
+  template: '&lt;div&gt;{{ param1 }}&lt;/div&gt;',
+  templateUrl: 'template.html',
+  require: { // controllers of other components
+    directParent: '^parentComponent',
+    anyParent: '^^parentComponent'
+  },
+  bindings: {
+    param1: '<', // one-way binding
+    param2: '=', // two-way binding
+    onEvent: '&' // callbacks/events
+  },
+  controller: function ComponentController() {
+    this.onEvent(this.param1);
+    this.directParent.lala(this.param2);
+  }
+});
+              </code></pre>
+          </section>
+
+          <section>
             <h2>Components vs. Directives</h2>
             <ul>
-              <li>Components should be used as the default (Angular > 1.5)</li>
-              <li>Directives for special DOM manipulation</li>
+              <li>Components should be used as the default (>1.5)</li>
+              <li>Directives only for special DOM manipulation</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Component - Exercise</h2>
+            <ul>
+              <li>Create a panel component "my-panel"
+              <pre><code>&lt;my-panel title="This is the title"&gt;
+This is the content
+&lt;my-panel&gt;</pre></code></li>
+              <li>Use Bootstrap's markup for panels: <a href="http://getbootstrap.com/components/#panels-heading">http://getbootstrap.com/components/#panels-heading</a></li>
+              <li>Use the Angular template <a href="http://codepen.io/derkoe/pen/ZWpyZd">http://codepen.io/derkoe/pen/ZWpyZd</a></li>
             </ul>
           </section>
         </section>
@@ -182,6 +216,15 @@
           </section>
 
           <section>
+              <h2>Conditionals - ng-if and ng-show</h2>
+              <ul>
+                  <li><code>ng-show/ng-hide</code> - set display to none</li>
+                  <li><code>ng-if</code> - remove element from DOM</li>
+              </ul>
+              <pre><code>&lt;div class=&quot;error&quot; ng-if=&quot;error&quot;&gt;{{error}}&lt;div&gt;</code></pre>
+          </section>
+
+          <section>
             <h2>Loops And ng-repeat</h2>
             <p data-height="450" data-theme-id="0" data-slug-hash="bVGeYv" data-default-tab="result" data-user="derkoe" class="codepen"></p>
           </section>
@@ -189,6 +232,15 @@
           <section>
             <h2>Selects and ng-options</h2>
             <p data-height="450" data-theme-id="0" data-slug-hash="MaWezd" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
+
+          <section>
+              <h2>Using Directives - Excercise</h2>
+              <ul>
+                  <li>Extend component "my-panel" from before</li>
+                  <li>Panel opening/closing when clicking on title</li>
+                  <li>Parameter "open" (true/false) that sets initial state</li>
+              </ul>
           </section>
         </section>
 
@@ -296,8 +348,16 @@
           </section>
 
           <section>
-              <h2>Form validation</h2>
+              <h2>Forms & Validation</h2>
               <p data-height="450" data-theme-id="0" data-slug-hash="VvwpLM" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
+
+          <section>
+            <h2>Complex Validation</h2>
+            <ul>
+              <li><a href="https://docs.angularjs.org/api/ngMessages">ngMessages Directive</a></li>
+              <li>Formly - <a href="http://angular-formly.com/">http://angular-formly.com/</a></li>
+            </ul>
           </section>
         </section>
 
@@ -316,6 +376,15 @@
           </section>
 
           <section>
+            <h2>Routing - Options</h2>
+            <ul>
+              <li>Angular ngRoute - simple standard router for AngularJS</li>
+              <li><a href="http://angular-ui.github.io/ui-router/">Angular UI Router</a> - flexible router add-on module, state oriented</li>
+              <li>Angular Component Router (>1.5) - "new" router from Angular based on components</li>
+            </ul>
+          </section>
+
+          <section>
             <h2>Routes and Redirects</h2>
             <p data-height="450" data-theme-id="0" data-slug-hash="BoamQd" data-default-tab="result" data-user="derkoe" class="codepen"></p>
           </section>
@@ -329,6 +398,33 @@
             <h2>Routes and Resolving</h2>
             <p data-height="450" data-theme-id="0" data-slug-hash="ZbEayw" data-default-tab="result" data-user="derkoe" class="codepen"></p>
           </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h1>Animations</h1>            
+          </section>
+
+          <section>
+            <h2>Animations - ngAnimate</h2>
+            <ul>
+              <li>Add "ngAnimate" to your module <code>angular.module('my-app', ['ngAnimate'])</code></li>
+              <li>Add CSS fo animation:
+                <ul>
+                  <li>.ng-hide - for ng-show/ng-hide</li>
+                  <li>.ng-enter .ng-leave - for ng-if/ng-switch/ng-view</li>
+                  <li>.ng-enter .ng-leave .ng-move - for ng-repeat</li>
+                  <li>"-active" is added after full enter/leave</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Animations - Example</h2>
+            <p data-height="450" data-theme-id="0" data-slug-hash="yOMbGO" data-default-tab="result" data-user="derkoe" class="codepen"></p>
+          </section>
         </section>
 
         <section>
@@ -339,7 +435,7 @@
           <section>
             <h2>Unit Testing services, filters, etc.</h2>
             <ul>
-              <li>Test-Runner: <a href="http://karma-runner.github.io/">Karma</a> (aka Testacular)</li>
+              <li>Test-Runner: <a href="http://karma-runner.github.io/">Karma</a></li>
               <li>angular-mocks.js to mock services</li>
               <li><a href="http://pivotal.github.io/jasmine/">Jasmine</a> for test specs</li>
             </ul>
@@ -347,8 +443,7 @@
 
           <section>
             <h2>Testing a Weather Widget</h2>
-            <iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/yc4yG/show"></iframe>
-            <iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/yc4yG/embedded/html,js/presentation/"></iframe>
+            <iframe width="100%" height="450" src="//jsfiddle.net/derkoe/yc4yG/embedded/js,html,result/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
           </section>
 
           <section>
@@ -426,11 +521,6 @@
   });</code></pre>
           </section>
 
-          <section>
-            <h2>End-To-End Testing</h2>
-            <iframe width="100%" height="200" src="http://jsfiddle.net/derkoe/V6vNS/show"></iframe>
-            <iframe width="100%" height="250" src="http://jsfiddle.net/derkoe/V6vNS/embedded/js/presentation/"></iframe>
-          </section>
         </section>
 
         <section>
