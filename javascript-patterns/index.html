@@ -210,9 +210,9 @@ var func2 = function(arg1) {
 }
 
 // execute anoynmous function
-<b>(</b>function () {
+(function () {
   ...
-}()<b>)</b>;</code></pre>
+}());</code></pre>
           </section>
 
           <section>
@@ -551,7 +551,7 @@ e.toString(); // Employee (name=Hubert, no=42)
 
           <section>
             <h2>Singleton Pattern</h2>
-            <pre><code contenteditable="true">var adder = <b>(</b>function() {
+            <pre><code>var adder = (function() {
   // private stuff
   var calcCount = 0;
   function doAdd(x, y) {
@@ -567,7 +567,7 @@ e.toString(); // Employee (name=Hubert, no=42)
       return calcCount;
     }
   };
-}()<b>)</b>;</code></pre>
+}());</code></pre>
           </section>
 
         </section>
@@ -580,7 +580,7 @@ e.toString(); // Employee (name=Hubert, no=42)
 
           <section>
             <h2>Private Module Pattern</h2>
-            <pre><code contenteditable="true" class="javascript"><b>(</b>function() {
+            <pre><code class="javascript">(function() {
   // everything is private
   var i, links = document.getElementsByTagName('a');
 
@@ -594,12 +594,12 @@ e.toString(); // Employee (name=Hubert, no=42)
   for (i = 0; i &lt; links.length; i++) {
     links[i].onclick = createConfirmListener(links[i]);
   };
-}()<b>)</b>;</code></pre>
+}());</code></pre>
           </section>
 
           <section>
             <h2>Global Module Pattern</h2>
-            <pre><code contenteditable="true" class="javascript"><b>(</b>function(global) {
+            <pre><code contenteditable="true" class="javascript">(function(global) {
   // private stuff
   var calcCount = 0;
   function doAdd(x, y) {
@@ -615,7 +615,7 @@ e.toString(); // Employee (name=Hubert, no=42)
       return calcCount;
     }
   };
-}(window)<b>)</b>;</code></pre>
+}(window));</code></pre>
           </section>
 
           <section>
