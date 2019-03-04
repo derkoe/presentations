@@ -38,10 +38,10 @@
       <div class="slides">
       
         <section>
-          <h1>JavaScript Patterns</h1>
-          <h3>Patterns in the most-misunderstood language</h3>
+          <h1>JavaScript</h1>
+          <h3>The most-misunderstood language</h3>
           <p>
-            <small>Created by <a href="http://derkoe.wordpress.com">Christian Köberl</a></small>
+            <small>Created by <a href="https://derkoe.github.io">Christian Köberl</a></small>
           </p>
         </section>
 
@@ -68,12 +68,17 @@
               <li>Netscape created JavaScript</li>
               <li>IE created JScript</li>
               <li>Standardized under ECMA: ECMAScript</li>
-              <li>Current versions: 
+            </ul>
+          </section>
+
+          <section>
+              <h2>Versions</h2>
               <ul>
                 <li>ES3, JScript 5.5 - 8.0, JavaScript 1.5 - 1.8.3</li>
                 <li>ES5, JScript 9.0+, JavaScript 1.8.5 (IE9+, FF4+, Chrome, Safari5+)</li>
+                <li>ES6 / ES2015 (Edge, FF, Chrome, Safari) </li>
+                <li>ES20**/ES.next</li>
               </ul>
-            </ul>
           </section>
 
         </section>
@@ -84,7 +89,7 @@
           </section>
 
           <section>
-            <h2>Variables (1)</h2>
+            <h2>Variables - var (1)</h2>
             <ul>
               <li><b>Always</b> declare variables:<br>
               <code><b>var</b> i = 4;</code></li>
@@ -101,7 +106,7 @@
           </section>
 
           <section>
-            <h2>Variables (2)</h2>
+            <h2>Variables - var (2)</h2>
             Variables have function scope!
             <pre><code>function bench() {
   // this is an infinite loop!
@@ -227,16 +232,7 @@ var func2 = function(arg1) {
 
           <section>
             <h2>Arguments</h2>
-            <pre><code contenteditable="true">// ES3
-function sum() {
-  var i, sum = 0;
-  for(i = 0; i &lt; arguments.length; i++) {
-    sum += arguments[i];
-  }
-  return sum;
-}
-
-// ES5
+            <pre><code contenteditable="true">// ES5
 function sum() {
   return arguments.reduce(function(x, y) {
     return x + y;
@@ -309,8 +305,9 @@ myThing.getX(); // 42</code></pre>
   }
 }
 </code></pre>
+            <p>&rArr; never define functions in loops!</p>
 
-<pre><code class="javascript" contenteditable="true">function createHideHandler(elm) {
+<pre class="fragment"><code class="javascript" contenteditable="true">function hideHandler(elm) {
   return function() {
     elm.style.display = 'none';
     return false;
@@ -321,7 +318,6 @@ for(i = 0; i &lt; elms.length; i++) {
   elm.onclick = hideHandler(elm);
 }
 </code></pre>
-            <p>&rArr; never define functions in loops!</p>
           </section>
 
 
@@ -399,9 +395,8 @@ var inc2 = add.curry(1);
               <li>Shim: delegate API calls to another version of an API</li>
               <li>Examples:
                 <ul>
-                  <li><a href="https://github.com/kriskowal/es5-shim" target="_blank">ES5 Shim</a></li>
-                  <li><a href="https://github.com/afarkas/html5shiv" target="_blank">HTML5 Shiv</a></li>
-                  <li><a href="http://afarkas.github.io/webshim/demos/" target="_blank">Webshims Lib</a>
+                  <li><a href="https://github.com/webcomponents/custom-elements" target="_blank">Custom Elements</a></li>
+                  <li><a href="https://github.com/es-shims/es5-shim" target="_blank">ES5 Shiv</a></li>
                 </ul>
               </li>
             </ul>
@@ -667,6 +662,78 @@ MATH_MODULE.mult = function(x, y) {
 });</code></pre>
           </section>
 
+        </section>
+
+        <section>
+          <section>
+            <h1>ES6 und ES.next</h1>
+          </section>
+          <section>
+            <h2>Scoped variables (let, const, function)</h2>
+            <pre class="javascript"><code>const length = 10; // length cannot be changed
+for (let i = 0; i < length; i++) {
+  function geti() {
+    return i;
+  }
+}
+// i, geti are out of scope here</code></pre>
+          </section>
+          <section>
+            <h2>Arrow functions</h2>
+            <pre class="javascript"><code>const inc = (a) => a + 1;
+
+[1, 2, 3].map(inc).forEach((entry) => {
+  console.log(entry);
+});
+            </code></pre>
+            <p>Arrow functions preserve this:</p>
+            <pre class="javascript"><code>this.nums.forEach((num) => {
+  // this is the outer this :)
+  if (num > this.max) {
+    this.max = num;
+  }
+});</code></pre>
+          </section>
+
+          <section>
+            <h2>Template Strings</h2>
+            <pre class="javascript"><code>const fullName = `${person.first} ${person.last}`
+
+const multiLine = `Hello ${person.gender === 'M' ? 'Mr.' : 'Ms.'} ${fullName}!
+
+Your car VIN is ${car.vin}.
+
+Regards ${company.name}!`</code></pre>
+          </section>
+
+          <section>
+            <h2>Promises</h2>
+            <pre class="javascript"><code>fetch('/api/user') // returns a Promise
+  .then((response) => response.json())
+  .then(user => {
+    this.user = user;
+  });</code></pre>
+            <pre class="javascript"><code>// Create a promise
+const inOneSecond = new Promise((resolve, reject) => {
+  setTimeout(() => resolve(`${msg} Hello ${who}!`), 1000);
+});
+inOneSecond.then(console.log);
+</code></pre>
+          </section>
+
+          <section>
+            <h2>Async / Await (ES2017)</h2>
+            <pre class="javascript"><code>async function load() {
+  const result = await fetch('/api/user');
+  return await response.json();
+}
+
+this.user = await load(); // this won't work, load returns a promise
+
+(async () => {
+  this.user = await load();
+})()</code></pre>
+          </section>
         </section>
 
         <section>
