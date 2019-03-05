@@ -707,6 +707,37 @@ Regards ${company.name}!`</code></pre>
           </section>
 
           <section>
+            <h2>Classes, Methods and Properties</h2>
+            <pre class="javascript"><code>class Person {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+  get first() { return this.firstName; }
+  set first(firstName) { this._firstName = firstName; }
+}
+            </code></pre>
+            <p>firstName is still public</p>
+          </section>
+
+          <section>
+            <h2>Objects with Methods/Properties</h2>
+            <pre class="javascript"><code>const person = {
+  firstName: "Christian",
+  lastName: "Köberl",
+  fullName() { return `${this.firstName} ${this.lastName}`; }
+}</code></pre>
+            <pre class="javascript"><code>let person = {
+  get firstName() { return "Christian" },
+  get lastName() { return "Köberl" },
+  fullName() { return `${this.firstName} ${this.lastName}`; }
+}</code></pre>
+          </section>
+
+          <section>
             <h2>Promises</h2>
             <pre class="javascript"><code>fetch('/api/user') // returns a Promise
   .then((response) => response.json())
